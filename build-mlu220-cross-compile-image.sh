@@ -32,7 +32,7 @@ The commands are:
 Examples:
     $0 -h
     $0 -m mlu270 -v 1.5.0
-    $0 -m mlu220m.2 -v 1.5.0
+    $0 -n 1 -l 1 -a 1
 Use '$0 -h' for more information about a command.
     "
 }
