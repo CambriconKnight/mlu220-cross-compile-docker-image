@@ -36,10 +36,14 @@ PATH_DATASETS_DOCKER="/data/datasets"
 PATH_MODELS_HOST="/data/models"
 #Models path on the docker container
 PATH_MODELS_DOCKER="/data/models"
-#Pro path on the host
-#PATH_PRO_HOST="/data/pro"
-#Pro path on the docker container
-#PATH_PRO_DOCKER="/data/pro"
+#TFTP path on the host
+PATH_TFTP_HOST="/data/tftp"
+#TFTP path on the docker container
+PATH_TFTP_DOCKER="/data/tftp"
+#NFS path on the host
+PATH_NFS_HOST="/data/nfs"
+#NFS path on the docker container
+PATH_NFS_DOCKER="/data/nfs"
 
 ##########################################################
 
@@ -56,6 +60,8 @@ if [ 0 -eq $num ];then
         -it -v $PATH_WORKSPACE2_HOST:$PATH_WORKSPACE2_DOCKER \
         -it -v $PATH_DATASETS_HOST:$PATH_DATASETS_DOCKER \
         -it -v $PATH_MODELS_HOST:$PATH_MODELS_DOCKER \
+        -it -v $PATH_TFTP_HOST:$PATH_TFTP_DOCKER \
+        -it -v $PATH_NFS_HOST:$PATH_NFS_DOCKER \
         --name $MY_CONTAINER $MY_IMAGES /bin/bash
 else
     sudo docker start $MY_CONTAINER

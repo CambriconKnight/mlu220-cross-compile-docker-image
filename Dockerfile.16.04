@@ -49,6 +49,7 @@ RUN echo deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted 
             lcov  \
             ca-certificates \
             device-tree-compiler libssl-dev bc tree \
+            minicom tftpd-hpa nfs-kernel-server nfs-common \
             net-tools && \
     apt-get clean && \
     apt-get update --fix-missing && \
