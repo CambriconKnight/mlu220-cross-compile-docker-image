@@ -59,3 +59,33 @@ aarch64-linux-gnu-gcc -v
 #执⾏以下命令，确认arm-none-eabi-gcc版本信息：
 arm-none-eabi-gcc -v
 ```
+
+# 源码包编译 #
+## 完整编译
+```bash
+#source
+echo $PATH
+source /etc/profile
+echo $PATH
+#进入默认目录
+cd /opt/cambricon
+mkdir opensrc
+#拷贝源码包（非必要）。拷贝在driver 包的release/neuware/opensrc ⽬录下有opensrc.tar.gz 压缩⽂件
+#cp /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.tar.gz ./
+#(直接)解压源码包。源码包以实际共享目录为准，解压后，可以得到开源的源码。
+tar zxf /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.tar.gz -C /opt/cambricon/opensrc
+#编译完整源码包
+cd /opt/cambricon/opensrc/mlu220_build/build/
+make plat=edge
+```
+编译完成后在/opt/cambricon/opensrc/mlu220_build/build/out/ ⽬录下⽣成如下⽂件:
+```bash
+out
+|-- bsp
+|-- bsp.tar.gz
+|-- bsp_md5.txt
+|-- cambricon
+|-- cambricon.tar.gz
+|-- cambricon_md5.txt
+`-- upgrade.sh
+```
