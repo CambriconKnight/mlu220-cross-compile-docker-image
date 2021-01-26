@@ -92,7 +92,10 @@ make: *** [linux-sys] Error 127
 
 可以增加[#!/bin/bash]内容到脚本首行/opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
 ```bash
-vi /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+#手动编辑增加[#!/bin/bash]内容到脚本首行
+#vi /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+#命令方式增加[#!/bin/bash]内容到脚本首行
+sed -i '1i\#!/bin/bash' /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
 ```
 
 修改脚本后，再次编译源码包即可。

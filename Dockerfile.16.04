@@ -57,7 +57,13 @@ RUN echo deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted 
 
 COPY . /opt/cambricon/
 
-RUN if [ "$with_neuware_installed" = "yes" ]; then dpkg -i /opt/cambricon/$neuware_package && \
+RUN echo '# /etc/default/tftpd-hpa' > /etc/default/tftpd-hpa && \
+    echo 'TFTP_USERNAME="tftp"' >> /etc/default/tftpd-hpa && \
+    echo 'TFTP_DIRECTORY="/data/tftp"' >> /etc/default/tftpd-hpa && \
+    echo 'TFTP_ADDRESS="0.0.0.0:69"' >> /etc/default/tftpd-hpa && \
+    echo 'TFTP_OPTIONS="-l -c -s"' >> /etc/default/tftpd-hpa && \
+    echo '/data/nfs *(rw,sync,no_root_squash)' >> /etc/exports && \
+    if [ "$with_neuware_installed" = "yes" ]; then dpkg -i /opt/cambricon/$neuware_package && \
     apt -o Accquire::AllowInsecureRepositories=true update && \
     apt install -y cndev cndrv cnrt cncodec && \
     rm -rf /opt/cambricon/$neuware_package; fi && \
