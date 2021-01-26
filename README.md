@@ -27,6 +27,12 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 #编译Docker镜像：安装 Neuware + gcc-arm
 #./build-mlu220-cross-compile-image.sh -n 1 -a 1
 ```
+编译后会在当前目录下生存一个镜像文件。$VERSION版本以实际为准
+```bash
+......
+====================== save image ======================
+-rw------- 1 root root 2887489536 1月  26 11:23 ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz
+```
 
 # Load #
 ```bash

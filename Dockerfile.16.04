@@ -15,7 +15,7 @@ MAINTAINER <Cambricon, Inc.>
 
 WORKDIR /opt/cambricon/
 
-ARG neuware_package=neuware-mlu270-1.4.0-1_Ubuntu16.04_amd64.deb
+ARG neuware_package=neuware-mlu270-1.5.0-1_Ubuntu16.04_amd64.deb
 ARG mlu_platform=MLU270
 ARG with_neuware_installed=no
 
@@ -41,12 +41,13 @@ RUN echo deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted 
     rm -rf /var/lib/apt/lists/* && mkdir /var/lib/apt/lists/partial && \
     apt-get clean && apt-get update --fix-missing && \
     apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
-            curl git wget vim build-essential cmake make apt-utils\
-            libopencv-dev \
+            curl git wget vim build-essential cmake make apt-utils \
+            libopencv-dev libcurl4-openssl-dev \
             libgoogle-glog-dev \
             openssh-server \
             libsdl2-dev  \
             lcov  \
+            ca-certificates \
             net-tools && \
     apt-get clean && \
     apt-get update --fix-missing && \
