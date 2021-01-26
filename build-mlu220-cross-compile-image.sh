@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     build-mlu220-cross-compile-image.sh

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     load-image-mlu220-cross-compile.sh
