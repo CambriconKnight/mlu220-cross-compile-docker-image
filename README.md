@@ -78,6 +78,32 @@ tar zxf /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.
 cd /opt/cambricon/opensrc/mlu220_build/build/
 make plat=edge
 ```
+如果遇到如下错误:
+```bash
+......
+./ramdisk_recovery.img
+./tools/generate_bsp_pkg.sh: 35: ./tools/generate_bsp_pkg.sh: pushd: not found
+md5sum: ./bsp.tar.gz: No such file or directory
+./tools/generate_bsp_pkg.sh: 37: ./tools/generate_bsp_pkg.sh: popd: not found
+./tools/generate_bsp_pkg.sh: 39: ./tools/generate_bsp_pkg.sh: popd: not found
+Makefile:197: recipe for target 'linux-sys' failed
+make: *** [linux-sys] Error 127
+```
+
+可以增加[#!/bin/bash]内容到脚本首行/opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+```bash
+vi /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+```
+
+修改脚本后，再次编译源码包即可。
+```bash
+#编译完整源码包
+cd /opt/cambricon/opensrc/mlu220_build/build/
+make plat=edge
+#查看编译后的文件
+/opt/cambricon/opensrc/mlu220_build/build/out/
+```
+
 编译完成后在/opt/cambricon/opensrc/mlu220_build/build/out/ ⽬录下⽣成如下⽂件:
 ```bash
 out
