@@ -19,7 +19,13 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 
 # Build #
 ```bash
+#编译完成后，会在本地生成一个docker镜像。
+#编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
 ./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#编译Docker镜像：安装 Neuware + gcc-linaro
+#./build-mlu220-cross-compile-image.sh -n 1 -l 1
+#编译Docker镜像：安装 Neuware + gcc-arm
+#./build-mlu220-cross-compile-image.sh -n 1 -a 1
 ```
 
 # Load #
@@ -36,6 +42,8 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 
 # Test #
 ```bash
+#进入默认目录
+cd /opt/cambricon
 #source
 echo $PATH
 source /etc/profile

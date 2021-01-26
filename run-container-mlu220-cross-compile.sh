@@ -1,6 +1,13 @@
 #/bin/bash
 set -e
-
+# -------------------------------------------------------------------------------
+# Filename:     run-container-mlu220-cross-compile.sh
+# UpdateDate:   2021/01/25
+# Description:  Loading docker image.
+# Example:      ./run-container-mlu220-cross-compile.sh
+# Depends:      container-mlu220-cross-compile-v1.5.0
+# Notes:        
+# -------------------------------------------------------------------------------
 #Version
 VERSION="v1.5.0"
 PATH_WORK="mlu220-cross-compile"

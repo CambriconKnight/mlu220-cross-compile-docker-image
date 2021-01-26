@@ -5,11 +5,16 @@ set -e
 # UpdateDate:   2021/01/25
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:      
-# Depends:
+#               #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
+#               ./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#               #编译Docker镜像：安装 Neuware + gcc-linaro
+#               #./build-mlu220-cross-compile-image.sh -n 1 -l 1
+#               #编译Docker镜像：安装 Neuware + gcc-arm
+#               #./build-mlu220-cross-compile-image.sh -n 1 -a 1
+# Depends:      neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb
+#               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
+#               gcc-arm-none-eabi-8-2018-q4-major.tar.gz
 # Notes:        
-# -------------------------------------------------------------------------------
-# Version 1.0.0
-# Initial version
 # -------------------------------------------------------------------------------
 #################### function ####################
 help_info() {
