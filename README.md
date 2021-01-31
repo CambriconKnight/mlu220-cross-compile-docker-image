@@ -68,25 +68,19 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 -rw------- 1 root root 2887489536 1月  26 11:23 ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz
 ```
 
-# 5. Clean
-```bash
-#清理本目录下已生成的临时目录、已生存的Docker镜像文件、已加载的Docker容器、已加载的Docker镜像
-./clean.sh
-```
-
-# 6. Load
+# 5. Load
 ```bash
 #加载Docker镜像
 ./load-image-mlu220-cross-compile.sh
 ```
 
-# 7. Run
+# 6. Run
 ```bash
 #启动Docker容器
 ./run-container-mlu220-cross-compile.sh
 ```
 
-# 8. Test
+# 7. Test
 ```bash
 #执⾏以下命令，确认aarch64-linux-gnu-gcc版本信息：
 aarch64-linux-gnu-gcc -v
@@ -94,8 +88,8 @@ aarch64-linux-gnu-gcc -v
 arm-none-eabi-gcc -v
 ```
 
-# 9. 源码包编译与验证
-## 9.1. 完整编译
+# 8. 源码包编译与验证
+## 8.1. 完整编译
 ```bash
 #进入默认目录
 cd /opt/cambricon
@@ -139,7 +133,7 @@ make plat=edge
 /opt/cambricon/opensrc/mlu220_build/build/out/
 ```
 
-## 9.2. 编译结果
+## 8.2. 编译结果
 编译完成后在/opt/cambricon/opensrc/mlu220_build/build/out/ ⽬录下⽣成如下⽂件:
 ```bash
 out
@@ -152,20 +146,20 @@ out
 `-- upgrade.sh
 ```
 
-# 10. CNStream-MLU220Edge交叉编译与验证
+# 9. CNStream-MLU220Edge交叉编译与验证
 MLU220Edge镜像编译生成后，接下来可基于此镜像进行MLU220SOM实例程序的交叉编译与验证：
 
 启动容器 >> 交叉编译 >> MLU220SOM验证
 
 以下基于寒武纪实时数据流分析开源框架[CNStream](https://github.com/Cambricon/CNStream)进行交叉编译与验证.
 
-## 10.1. 启动容器
+## 9.1. 启动容器
 ```bash
 #启动Docker容器
 ./run-container-mlu220-cross-compile.sh
 ```
 
-## 10.2. 交叉编译
+## 9.2. 交叉编译
 以下是基于CNStream进行交叉编译，详细交叉编译过程参考[CNStream-MLU220Edge交叉编译脚本](./tools/build-cnstream-mlu220edge.sh)。
 ```bash
 #进入tools目录:在容器中映射目录下，进行编译，方便文件共享。
@@ -179,32 +173,32 @@ scp cnstream_mlu220edge.tar.gz root@192.168.1.110:/cambricon/
 cp cnstream_mlu220edge.tar.gz /data/nfs/
 ```
 
-## 10.3. MLU220SOM验证
+## 9.3. MLU220SOM验证
 MLU270主机开发环境搭建完毕后，接下来需要搭建MLU220SOM验证环境：
 
-SOM板连接主机 >> 连接电源 >> 连接串口 >> 连接网口 >> 挂载NFS目录 >> 验证CNStream-MLU220Edge
+SOM板连接主机 >> 连接电源 >> 连接串口 >> 连接网口 >> 挂载NFS目录 >> 验证实例
 
 
-### 10.3.1. SOM板连接主机
+### 9.3.1. SOM板连接主机
 详见[《Cambricon_SOM_SDK_User_Guide_CN_v1.0.0-2.pdf》](ftp://download.cambricon.com:8821/download/document/MLU220SOM_IVA_1.6.106/Cambricon_SOM_SDK_User_Guide_CN_v1.0.0-2.pdf)。章节3.1.3 SOM板连接主机。
 
-### 10.3.2. 连接电源
+### 9.3.2. 连接电源
 将MLU220SOM底板的外部电源接好(12V DC电源输入)。
 
-### 10.3.3. 连接串口
+### 9.3.3. 连接串口
 使用USB转TTL串口线连接MLU220SOM底板上的CPU_UART_0接口。⽤串⼝转USB 线连接到主机。⽤minicom 等⼯具打开串⼝时，波特率请选择115200，关闭流控。
 USB转TTL串口线序连接说明
-| 线序定义 | USB转TTL线缆颜色 | MLU220SOM底板接口     | 备注                                           |
-| -------- | ---------------- | ------------------- | --------------------------------------------- |
-| `GND`    | 黑线             | 接底板上的【GND】针脚 | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
-| `TXD`    | 绿线             | 接底板上的【RXD】针脚 | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
-| `RXD`    | 白线             | 接底板上的【TXD】针脚 | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
-| `VCC`    | 红线             | 不需连接             | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
+| 线序定义    | USB转TTL线缆        | MLU220SOM底板接口       | 备注                                        |
+| ---------- | ------------------ | --------------------- | ------------------------------------------- |
+| `GND`      | 黑线               | 接底板上【GND】针脚      | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
+| `TXD`      | 绿线               | 接底板上【RXD】针脚      | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
+| `RXD`      | 白线               | 接底板上【TXD】针脚      | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
+| `VCC`      | 红线               | 不需连接               | 可接底板接口：CPU_UART_0/CPU_UART_1/MCU_UART_5 |
 
-### 10.3.4. 连接网口
+### 9.3.4. 连接网口
 ⽤⽹线将千兆以太⽹ETH1 和主机相连。
 
-### 10.3.5. 挂载NFS目录
+### 9.3.5. 挂载NFS目录
 在开发阶段，推荐使⽤NFS ⽂件系统作为开发环境⽂件系统，使⽤NFS ⽂件系统减少了重新制作和烧
 写根⽂件系统的⼯作。挂载NFS ⽂件系统参考如下命令：
 ```bash
@@ -215,7 +209,7 @@ mount -t nfs -o nolock 10.100.8.225:/data/nfs /cambricon/nfs
 ```
 挂载完成，即可以访问NFS 服务器上/data/nfs ⽬录下的⽂件，进⾏交互开发⼯作。
 
-### 10.3.6. 验证CNStream-MLU220Edge
+### 9.3.6. 验证实例
 以下采用挂载上位机NFS目录的方式，进⾏交互开发⼯作。
 ```bash
 #SSH登陆MLU220Edge
