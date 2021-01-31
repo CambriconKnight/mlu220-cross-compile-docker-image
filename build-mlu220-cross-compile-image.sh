@@ -5,19 +5,28 @@ set -e
 # UpdateDate:   2021/01/25
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:
-#               #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
-#               ./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
-#               #编译Docker镜像：安装 Neuware + gcc-linaro
+#               #Build docker images: install gcc-linaro + cntoolkit-edge
+#               ./build-mlu220-cross-compile-image.sh -l 1 -c 1
+#               #Build docker images: install Neuware + gcc-linaro + gcc-arm
+#               #./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#               #Build docker images: install Neuware + gcc-linaro
 #               #./build-mlu220-cross-compile-image.sh -n 1 -l 1
-#               #编译Docker镜像：安装 Neuware + gcc-arm
+#               #Build docker images: install Neuware + gcc-arm
 #               #./build-mlu220-cross-compile-image.sh -n 1 -a 1
 # Depends:
-#               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
-#               gcc-arm-none-eabi-8-2018-q4-major.tar.gz
-# These files are updated with the latest version:
-#               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb
-#               cntoolkit-edge_1.4.110-1_arm64.tar.gz
+#               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb(ftp://download.cambricon.com:8821/**/neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb)
+#               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz(ftp://download.cambricon.com:8821/**/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
+#               gcc-arm-none-eabi-8-2018-q4-major.tar.gz(ftp://download.cambricon.com:8821/**/gcc-arm-none-eabi-8-2018-q4-major.tar.gz)
+#               cntoolkit-edge_1.4.110-1_arm64.tar.gz(ftp://download.cambricon.com:8821/**/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
 # Notes:
+#               1.gcc-linaro&cntoolkit-edge has been deployed to the container.
+#                 gcc-linaro(/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu)
+#                 cntoolkit-edge-1.4.110(/opt/cambricon/neuware/pc/lib64)
+#               2.These environment variables has been set in the container
+#                 BIN_DIR_GCC_Linaro=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
+#                 BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
+#                 PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
+#                 NEUWARE_HOME=/opt/cambricon/neuware/pc
 # -------------------------------------------------------------------------------
 #################### function ####################
 help_info() {
