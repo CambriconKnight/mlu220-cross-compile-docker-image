@@ -80,12 +80,6 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 
 # Test
 ```bash
-#进入默认目录
-cd /opt/cambricon
-#source
-echo $PATH
-source /etc/profile
-echo $PATH
 #执⾏以下命令，确认aarch64-linux-gnu-gcc版本信息：
 aarch64-linux-gnu-gcc -v
 #执⾏以下命令，确认arm-none-eabi-gcc版本信息：
@@ -95,10 +89,6 @@ arm-none-eabi-gcc -v
 # 源码包编译
 ## 完整编译
 ```bash
-#source
-echo $PATH
-source /etc/profile
-echo $PATH
 #进入默认目录
 cd /opt/cambricon
 mkdir opensrc
@@ -153,10 +143,6 @@ out
 
 # CNStream-MLU220Edge交叉编译
 ```bash
-#source
-echo $PATH
-source /etc/profile
-echo $PATH
 #进入默认目录
 cd /opt/cambricon
 #拷贝CNStream-MLU220Edge交叉编译脚本
