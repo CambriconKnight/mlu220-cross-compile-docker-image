@@ -2,7 +2,7 @@
 # Filename:     Dockerfile.16.04
 # UpdateDate:   2021/01/25
 # Description:  Build docker images for mlu220-cross-compile.
-# Example:      
+# Example:
 # Depends:      neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb
 #               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
 #               gcc-arm-none-eabi-8-2018-q4-major.tar.gz
@@ -24,6 +24,9 @@ ARG with_gcc_linaro_installed=yes
 
 ARG mlu220_gcc_arm=gcc-arm-none-eabi-8-2018-q4-major.tar.gz
 ARG with_gcc_arm_installed=no
+
+ARG mlu220_cntoolkit_edge=cntoolkit-edge_1.4.110-1_arm64.tar.gz
+ARG with_cntoolkit_edge_installed=yes
 
 RUN echo -e 'nameserver 114.114.114.114' > /etc/resolv.conf
 
@@ -67,11 +70,18 @@ RUN echo '# /etc/default/tftpd-hpa' > /etc/default/tftpd-hpa && \
     apt -o Accquire::AllowInsecureRepositories=true update && \
     apt install -y cndev cndrv cnrt cncodec && \
     rm -rf /opt/cambricon/$neuware_package; fi && \
+    echo '#!/bin/bash' > /opt/cambricon/env.sh && \
     if [ "$with_gcc_linaro_installed" = "yes" ]; then tar zxf /opt/cambricon/$mlu220_gcc_linaro -C /opt/cambricon && \
-    echo 'export PATH="/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin:$PATH"' >> /etc/profile && \
+    echo 'export PATH="/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin:$PATH"' >> /opt/cambricon/env.sh && \
     rm -rf /opt/cambricon/$mlu220_gcc_linaro; fi && \
     if [ "$with_gcc_arm_installed" = "yes" ]; then tar zxf /opt/cambricon/$mlu220_gcc_arm -C /opt/cambricon && \
-    echo 'export PATH="/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin:$PATH"' >> /etc/profile && \
-    rm -rf /opt/cambricon/$mlu220_gcc_arm; fi
+    echo 'export PATH="/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin:$PATH"' >> /opt/cambricon/env.sh && \
+    rm -rf /opt/cambricon/$mlu220_gcc_arm; fi && \
+    if [ "$with_cntoolkit_edge_installed" = "yes" ]; then tar zxf /opt/cambricon/$mlu220_cntoolkit_edge -C /opt/cambricon && \
+    echo 'export NEUWARE_HOME=/opt/cambricon/neuware/pc' >> /opt/cambricon/env.sh && \
+    rm -rf /opt/cambricon/$mlu220_cntoolkit_edge; fi
+
+ENV PATH=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin:/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin:$PATH
+ENV NEUWARE_HOME=/opt/cambricon/neuware/pc
 
 WORKDIR /opt/cambricon

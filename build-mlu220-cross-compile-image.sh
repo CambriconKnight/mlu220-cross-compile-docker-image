@@ -4,17 +4,20 @@ set -e
 # Filename:     build-mlu220-cross-compile-image.sh
 # UpdateDate:   2021/01/25
 # Description:  Build docker images for mlu220-cross-compile.
-# Example:      
+# Example:
 #               #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
 #               ./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
 #               #编译Docker镜像：安装 Neuware + gcc-linaro
 #               #./build-mlu220-cross-compile-image.sh -n 1 -l 1
 #               #编译Docker镜像：安装 Neuware + gcc-arm
 #               #./build-mlu220-cross-compile-image.sh -n 1 -a 1
-# Depends:      neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb
+# Depends:
 #               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
 #               gcc-arm-none-eabi-8-2018-q4-major.tar.gz
-# Notes:        
+# These files are updated with the latest version:
+#               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb
+#               cntoolkit-edge_1.4.110-1_arm64.tar.gz
+# Notes:
 # -------------------------------------------------------------------------------
 #################### function ####################
 help_info() {
@@ -24,15 +27,14 @@ Usage:
     $0 <command> [arguments]
 The commands are:
     -h      Help info.
-    -m      MLU Platform.(mlu270, mlu220m.2)
-    -v      Neuware version.
     -n      FLAG_with_neuware_installed.(0/1;default:0)
     -l      FLAG_with_gcc_linaro_installed.(0/1;default:1)
     -a      FLAG_with_gcc_arm_installed.(0/1;default:0)
+    -c      FLAG_with_cntoolkit_edge_installed.(0/1;default:1)
 Examples:
     $0 -h
-    $0 -m mlu270 -v 1.5.0
     $0 -n 1 -l 1 -a 1
+    $0 -l 1 -c 1
 Use '$0 -h' for more information about a command.
     "
 }
@@ -48,7 +50,7 @@ refresh_global_variables() {
     VERSION="v${VER}"
     PATH_WORK="mlu220-cross-compile"
     neuware_version="neuware-${MLU}-${VER}"
-    neuware_package_name="${neuware_version}-1_Ubuntu16.04_amd64.deb"
+    neuware_package_name="cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb"
     NAME_IMAGE="ubuntu16.04_mlu220-cross-compile:$VERSION"
     FILENAME_IMAGE="ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz"
 }
@@ -57,7 +59,7 @@ refresh_global_variables() {
 #MLU Platform
 MLU="mlu270"
 #Version
-VER="1.5.0"
+VER="1.6.0"
 
 #Global variables
 #UPPERCASE:mlu270--->MLU270
@@ -68,19 +70,24 @@ NAME_IMAGE="ubuntu16.04_$PATH_WORK:$VERSION"
 FILENAME_IMAGE="ubuntu16.04_$PATH_WORK-$VERSION.tar.gz"
 #neuware
 neuware_version="neuware-${MLU}-${VER}"
-neuware_package_name="${neuware_version}-1_Ubuntu16.04_amd64.deb"
+neuware_package_name="cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb"
 #gcc-linaro
 FILENAME_MLU220_GCC_LINARO="gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz"
 #gcc-arm-none-eabi
 FILENAME_MLU220_GCC_ARM="gcc-arm-none-eabi-8-2018-q4-major.tar.gz"
+#cntoolkit-edge
+FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.4.110-1_arm64.tar.gz"
 
 ##FLAG_with_***_installed
 FLAG_with_neuware_installed=0
 FLAG_with_gcc_linaro_installed=1
 FLAG_with_gcc_arm_installed=0
+FLAG_with_cntoolkit_edge_installed=1
 FLAG_with_neuware_installed2dockerfile="no"
 FLAG_with_gcc_linaro_installed2dockerfile="yes"
 FLAG_with_gcc_arm_installed2dockerfile="no"
+FLAG_with_cntoolkit_edge_installed2dockerfile="yes"
+
 
 none="\033[0m"
 green="\033[0;32m"
@@ -92,7 +99,7 @@ if [[ $# -eq 0 ]];then
 fi
 
 # Get parameters
-while getopts "h:m:v:n:l:a:" opt; do
+while getopts "h:m:v:n:l:a:c:" opt; do
     case $opt in
     h) help_info  &&  exit 0
         ;;
@@ -105,6 +112,8 @@ while getopts "h:m:v:n:l:a:" opt; do
     l) FLAG_with_gcc_linaro_installed=$OPTARG
         ;;
     a) FLAG_with_gcc_arm_installed=$OPTARG
+        ;;
+    c) FLAG_with_cntoolkit_edge_installed=$OPTARG
         ;;
     \?)
         help_info && exit 0
@@ -124,16 +133,18 @@ fi
 cd "${PATH_WORK}"
 
 ## copy the dependent packages into the directory of $PATH_WORK
-##copy your neuware package into the directory
+##copy your neuware package into the directory(ftp://download.cambricon.com:8821/product/MLU270/IVA-1.6.106/cntoolkit/ubuntu16.04/cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb)
 if [ $FLAG_with_neuware_installed -eq 1 ];then
     if [ -f "${neuware_package_name}" ];then
         echo "File(${neuware_package_name}): Exists!"
     else
         echo -e "${red}File(${neuware_package_name}): Not exist!${none}"
-        echo -e "${yellow}Copy the dependent packages(${neuware_package_name}) into the directory!${none}"
-        echo -e "${yellow}eg:cp -v /data/ftp/$VERSION/neuware/${neuware_package_name} ./${PATH_WORK}${none}"
+        echo -e "${yellow}1.Please download ${neuware_package_name} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}  For further information, please contact us.${none}"
+        echo -e "${yellow}2.Copy the dependent packages(${neuware_package_name}) into the directory!${none}"
+        echo -e "${yellow}  eg:cp -v /data/ftp/$VERSION/neuware/${neuware_package_name} ./${PATH_WORK}${none}"
         #Manual copy
-        #cp -v /data/ftp/v1.5.0/neuware/neuware-mlu270-1.5.0-1_Ubuntu16.04_amd64.deb ./cnstream
+        #cp -v /data/ftp/v1.5.0/neuware/cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb ./cnstream
         exit -1
     fi
     FLAG_with_neuware_installed2dockerfile="yes"
@@ -147,8 +158,10 @@ if [ $FLAG_with_gcc_linaro_installed -eq 1 ];then
         echo "File(${FILENAME_MLU220_GCC_LINARO}): Exists!"
     else
         echo -e "${red}File(${FILENAME_MLU220_GCC_LINARO}): Not exist!${none}"
-        echo -e "${yellow}Copy the dependent packages(${FILENAME_MLU220_GCC_LINARO}) into the directory!${none}"
-        echo -e "${yellow}eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/${FILENAME_MLU220_GCC_LINARO} ./${PATH_WORK}${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_LINARO} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}  For further information, please contact us.${none}"
+        echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_LINARO}) into the directory!${none}"
+        echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/${FILENAME_MLU220_GCC_LINARO} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz ./mlu220-cross-compile
         exit -1
@@ -164,8 +177,10 @@ if [ $FLAG_with_gcc_arm_installed -eq 1 ];then
         echo "File(${FILENAME_MLU220_GCC_ARM}): Exists!"
     else
         echo -e "${red}File(${FILENAME_MLU220_GCC_ARM}): Not exist!${none}"
-        echo -e "${yellow}Copy the dependent packages(${FILENAME_MLU220_GCC_ARM}) into the directory!${none}"
-        echo -e "${yellow}eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/m0/${FILENAME_MLU220_GCC_ARM} ./${PATH_WORK}${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_ARM} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}  For further information, please contact us.${none}"
+        echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_ARM}) into the directory!${none}"
+        echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/m0/${FILENAME_MLU220_GCC_ARM} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/gcc-arm-none-eabi-8-2018-q4-major.tar.gz ./mlu220-cross-compile
         exit -1
@@ -173,6 +188,25 @@ if [ $FLAG_with_gcc_arm_installed -eq 1 ];then
     FLAG_with_gcc_arm_installed2dockerfile="yes"
 else
     FLAG_with_gcc_arm_installed2dockerfile="no"
+fi
+
+### FILENAME_MLU220_CNToolkit(ftp://download.cambricon.com:8821/product/MLU220/IVA-1.6.106/mlu220edge/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
+if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
+    if [ -f "${FILENAME_MLU220_CNToolkit}" ];then
+        echo "File(${FILENAME_MLU220_CNToolkit}): Exists!"
+    else
+        echo -e "${red}File(${FILENAME_MLU220_CNToolkit}): Not exist!${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNToolkit} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}  For further information, please contact us.${none}"
+        echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_CNToolkit}) into the directory!${none}"
+        echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/IVA-1.6.106/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
+        #Manual copy
+        #cp -v /data/ftp/mlu220/IVA-1.6.106/mlu220edge/cntoolkit-edge_1.4.110-1_arm64.tar.gz ./mlu220-cross-compile
+        exit -1
+    fi
+    FLAG_with_cntoolkit_edge_installed2dockerfile="yes"
+else
+    FLAG_with_cntoolkit_edge_installed2dockerfile="no"
 fi
 
 #1.build image
@@ -183,6 +217,7 @@ sudo docker build -f ../Dockerfile.16.04 \
     --build-arg with_neuware_installed=${FLAG_with_neuware_installed2dockerfile} \
     --build-arg with_gcc_linaro_installed=${FLAG_with_gcc_linaro_installed2dockerfile} \
     --build-arg with_gcc_arm_installed=${FLAG_with_gcc_arm_installed2dockerfile} \
+    --build-arg with_cntoolkit_edge_installed=${FLAG_with_cntoolkit_edge_installed2dockerfile} \
     -t $NAME_IMAGE .
 #2.save image
 echo "====================== save image ======================"

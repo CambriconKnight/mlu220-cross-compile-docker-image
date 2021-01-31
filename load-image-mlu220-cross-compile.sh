@@ -6,10 +6,10 @@ set -e
 # Description:  Loading docker image.
 # Example:      ./load-image-mlu220-cross-compile.sh
 # Depends:      ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz
-# Notes:        
+# Notes:
 # -------------------------------------------------------------------------------
 #Version
-VERSION="v1.5.0"
+VERSION="v1.6.0"
 PATH_WORK="mlu220-cross-compile"
 
 if [[ $# -eq 1 ]];then
