@@ -154,7 +154,9 @@ out
 
 # 10. CNStream-MLU220Edge交叉编译与验证
 MLU220Edge镜像编译生成后，接下来可基于此镜像进行MLU220SOM实例程序的交叉编译与验证：
+
 启动容器 >> 交叉编译 >> MLU220SOM验证
+
 以下基于寒武纪实时数据流分析开源框架[CNStream](https://github.com/Cambricon/CNStream)进行交叉编译与验证.
 
 ## 10.1. 启动容器
@@ -179,7 +181,10 @@ cp cnstream_mlu220edge.tar.gz /data/nfs/
 
 ## 10.3. MLU220SOM验证
 MLU270主机开发环境搭建完毕后，接下来需要搭建MLU220SOM验证环境：
-SOM板连接主机 >> 连接电源 >> 连接串口 >> 连接网口 >> 挂载NFS目录
+
+SOM板连接主机 >> 连接电源 >> 连接串口 >> 连接网口 >> 挂载NFS目录 >> 验证CNStream-MLU220Edge
+
+
 ### 10.3.1. SOM板连接主机
 详见[《Cambricon_SOM_SDK_User_Guide_CN_v1.0.0-2.pdf》](ftp://download.cambricon.com:8821/download/document/MLU220SOM_IVA_1.6.106/Cambricon_SOM_SDK_User_Guide_CN_v1.0.0-2.pdf)。章节3.1.3 SOM板连接主机。
 
