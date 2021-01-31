@@ -22,14 +22,17 @@ Installed software:
 - cncodec
 - gcc-linaro
 - gcc-arm-none-eabi
+- cntoolkit-edge
 
 # Directory tree
 
 ```bash
 .
 ├── build-mlu220-cross-compile-image.sh
+├── clean.sh
 ├── Dockerfile.16.04
 ├── load-image-mlu220-cross-compile.sh
+├── README.md
 └── run-container-mlu220-cross-compile.sh
 ```
 
@@ -41,8 +44,10 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 # Build
 ```bash
 #编译完成后，会在本地生成一个docker镜像。
+#编译Docker镜像：安装 gcc-linaro + cntoolkit-edge
+./build-mlu220-cross-compile-image.sh -l 1 -c 1
 #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
-./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
 #编译Docker镜像：安装 Neuware + gcc-linaro
 #./build-mlu220-cross-compile-image.sh -n 1 -l 1
 #编译Docker镜像：安装 Neuware + gcc-arm
@@ -53,6 +58,12 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 ......
 ====================== save image ======================
 -rw------- 1 root root 2887489536 1月  26 11:23 ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz
+```
+
+# Clean
+```bash
+#清理本目录下已生成的临时目录、已生存的Docker镜像文件、已加载的Docker容器、已加载的Docker镜像
+./clean.sh
 ```
 
 # Load
