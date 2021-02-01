@@ -1,6 +1,6 @@
 SET(CMAKE_SYSTEM_NAME Linux)
 
-SET(BIN_DIR $ENV{GCC_Linaro_BIN_DIR})
+SET(BIN_DIR $ENV{BIN_DIR_GCC_Linaro})
 SET(CROSS_PREFIX ${BIN_DIR}/aarch64-linux-gnu-)
 SET(CMAKE_C_COMPILER  ${BIN_DIR}/aarch64-linux-gnu-gcc)
 SET(CMAKE_CXX_COMPILER ${BIN_DIR}/aarch64-linux-gnu-g++)
