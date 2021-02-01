@@ -14,10 +14,10 @@ set -e
 #               #Build docker images: install Neuware + gcc-arm
 #               #./build-mlu220-cross-compile-image.sh -n 1 -a 1
 # Depends:
-#               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb(ftp://download.cambricon.com:8821/**/neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb)
-#               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz(ftp://download.cambricon.com:8821/**/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
-#               gcc-arm-none-eabi-8-2018-q4-major.tar.gz(ftp://download.cambricon.com:8821/**/gcc-arm-none-eabi-8-2018-q4-major.tar.gz)
-#               cntoolkit-edge_1.4.110-1_arm64.tar.gz(ftp://download.cambricon.com:8821/**/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
+#               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb(ftp://download.cambricon.com:8821/***/neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb)
+#               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz(ftp://download.cambricon.com:8821/***/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
+#               gcc-arm-none-eabi-8-2018-q4-major.tar.gz(ftp://download.cambricon.com:8821/***/gcc-arm-none-eabi-8-2018-q4-major.tar.gz)
+#               cntoolkit-edge_1.4.110-1_arm64.tar.gz(ftp://download.cambricon.com:8821/***/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
 # Notes:
 #               1.gcc-linaro&cntoolkit-edge has been deployed to the container.
 #                 gcc-linaro(/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu)
@@ -142,13 +142,13 @@ fi
 cd "${PATH_WORK}"
 
 ## copy the dependent packages into the directory of $PATH_WORK
-##copy your neuware package into the directory(ftp://download.cambricon.com:8821/product/MLU270/IVA-1.6.106/cntoolkit/ubuntu16.04/cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb)
+##copy your neuware package into the directory
 if [ $FLAG_with_neuware_installed -eq 1 ];then
     if [ -f "${neuware_package_name}" ];then
         echo "File(${neuware_package_name}): Exists!"
     else
         echo -e "${red}File(${neuware_package_name}): Not exist!${none}"
-        echo -e "${yellow}1.Please download ${neuware_package_name} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}1.Please download ${neuware_package_name} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${neuware_package_name}) into the directory!${none}"
         echo -e "${yellow}  eg:cp -v /data/ftp/$VERSION/neuware/${neuware_package_name} ./${PATH_WORK}${none}"
@@ -161,13 +161,13 @@ else
     FLAG_with_neuware_installed2dockerfile="no"
 fi
 
-### FILENAME_MLU220_GCC_LINARO(ftp://download.cambricon.com:8821/product/MLU220/交叉编译工具/aarch64/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
+### FILENAME_MLU220_GCC_LINARO
 if [ $FLAG_with_gcc_linaro_installed -eq 1 ];then
     if [ -f "${FILENAME_MLU220_GCC_LINARO}" ];then
         echo "File(${FILENAME_MLU220_GCC_LINARO}): Exists!"
     else
         echo -e "${red}File(${FILENAME_MLU220_GCC_LINARO}): Not exist!${none}"
-        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_LINARO} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_LINARO} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_LINARO}) into the directory!${none}"
         echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/${FILENAME_MLU220_GCC_LINARO} ./${PATH_WORK}${none}"
@@ -180,13 +180,13 @@ else
     FLAG_with_gcc_linaro_installed2dockerfile="no"
 fi
 
-### FILENAME_MLU220_GCC_ARM(ftp://download.cambricon.com:8821/product/MLU220/交叉编译工具/aarch64/gcc-arm-none-eabi-8-2018-q4-major.tar.gz)
+### FILENAME_MLU220_GCC_ARM
 if [ $FLAG_with_gcc_arm_installed -eq 1 ];then
     if [ -f "${FILENAME_MLU220_GCC_ARM}" ];then
         echo "File(${FILENAME_MLU220_GCC_ARM}): Exists!"
     else
         echo -e "${red}File(${FILENAME_MLU220_GCC_ARM}): Not exist!${none}"
-        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_ARM} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_ARM} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_ARM}) into the directory!${none}"
         echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/cross-compile-toolchain/m0/${FILENAME_MLU220_GCC_ARM} ./${PATH_WORK}${none}"
@@ -199,13 +199,13 @@ else
     FLAG_with_gcc_arm_installed2dockerfile="no"
 fi
 
-### FILENAME_MLU220_CNToolkit(ftp://download.cambricon.com:8821/product/MLU220/IVA-1.6.106/mlu220edge/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
+### FILENAME_MLU220_CNToolkit
 if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
     if [ -f "${FILENAME_MLU220_CNToolkit}" ];then
         echo "File(${FILENAME_MLU220_CNToolkit}): Exists!"
     else
         echo -e "${red}File(${FILENAME_MLU220_CNToolkit}): Not exist!${none}"
-        echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNToolkit} from FTP(ftp://download.cambricon.com:8821)!${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNToolkit} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_CNToolkit}) into the directory!${none}"
         echo -e "${yellow}  eg:cp -v /data/ftp/mlu220/IVA-1.6.106/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
