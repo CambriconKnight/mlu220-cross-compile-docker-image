@@ -98,4 +98,6 @@ ENV BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
 ENV PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
 ENV NEUWARE_HOME=/opt/cambricon/neuware/pc
 
+ENV LANG C.UTF-8
+
 WORKDIR /opt/cambricon
