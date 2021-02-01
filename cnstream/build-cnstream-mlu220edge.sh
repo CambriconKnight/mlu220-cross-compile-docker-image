@@ -125,7 +125,7 @@ build_ffmpeg_edge() {
     echo -e "${green}# Build ffmpeg for mlu220edge.....${none}"
     pushd ${1}/${2}
     ./configure --prefix=${1}/cnstream \
-    --cross-prefix=$GCC_Linaro_BIN_DIR/aarch64-linux-gnu- \
+    --cross-prefix=$BIN_DIR_GCC_Linaro/aarch64-linux-gnu- \
     --enable-cross-compile --arch=arm64 --target-os=linux \
     --enable-shared --disable-static \
     --enable-gpl --enable-nonfree --disable-debug \
