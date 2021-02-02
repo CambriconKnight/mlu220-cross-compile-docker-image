@@ -40,12 +40,18 @@ These environment variables has been set in the container:
 
 ```bash
 .
-├── build-mlu220-cross-compile-image.sh
-├── clean.sh
-├── Dockerfile.16.04
-├── load-image-mlu220-cross-compile.sh
-├── README.md
-└── run-container-mlu220-cross-compile.sh
+├── build-mlu220-cross-compile-image.sh         （编译出MLU220交叉编译开发环境的脚本）
+├── clean.sh                                    （清理Build出来的临时目录或文件,包括镜像文件,已加载的镜像,已加载的容器等）
+├── cncodec                                     （cncodec的交叉编译开发目录，未完......待自测验证后提交）
+├── cnrt                                        （cnrt的交叉编译开发目录，未完......待自测验证后提交）
+├── cnstream                                    （cnstream的交叉编译开发目录，已完）
+├── Dockerfile.16.04                            （dockerfile）
+├── easydk                                      （easydk的交叉编译开发目录，未完......待自测验证后提交）
+├── load-image-mlu220-cross-compile.sh          （加载docker镜像）
+├── README.md                                   （readme）
+├── res                                         （readme文档中涉及到的图片资源存放路径）
+├── run-container-mlu220-cross-compile.sh       （启动docker容器）
+└── tools                                       （交叉编译中常用的小工具和脚本）
 ```
 
 # 3. Clone
