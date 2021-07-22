@@ -199,3 +199,15 @@ Adherence to RFC-4330 chapter 10, Best practices:
  8.  not supported (scary opportunity to DOS the _client_)
 
        - Larry Doolittle  <larry@doolittle.boa.org>
+
+#编译/交叉编译make完成后可执行以下NTP校时命令
+#查看时间的命令
+	   date
+	   date -R
+
+#手动设置时间命令
+	   date -s "2021-07-22 16:00:00"
+
+#NTP校时命令
+#ntp.sjtu.edu.cn 202.120.2.101 (上海交通大学网络中心NTP服务器地址）
+		./ntpclient -c 1 -d -h 202.120.2.101 -s
