@@ -1,23 +1,23 @@
-# 概述
+# 1. 概述
 基于寒武纪 MLU220-SOM 边缘端人工智能模组可以开发出很多场景应用的嵌入式AI设备。但可能有些嵌入式设备中设计之初为了节省成本或者体积原因都没有配备掉电保存电池，每次上电之后就需要人为手动的更新系统时间，而且系统时间也不准确。有些场景应用需要得到实时且较准确的时间，以和服务器或设备之间进行时间同步。但是又不能通过人工设置时间的方式来同步时间，那就需要有个服务/程序自动从网络上获取时间，这就需要用到NTP。
 NTP是网络时间协议(Network Time Protocol)的简称，它是用来同步网络中各个计算机设备的时间的协议。
 
-# NTPClient
+# 2. NTPClient
 为了支持精简版嵌入式Linux系统NTP校时，本文推荐的是第三方代码ntpclient保持时间同步：
 ```bash
 ntpclient is an NTP (RFC-1305) client for unix-alike computers. Its functionality is a small subset of xntpd, but IMHO performs better (or at least has the potential to function better) within that limited scope. Since it is much smaller than xntpd, it is also more relevant for embedded computers.
 ntpclient is Copyright (C) 1997-2015 Larry Doolittle, and may be freely copied and modified according to the terms of the GNU General Public License, version 2.
 ```
 
-## NTPClient下载地址
+## 2.1 NTPClient下载地址
 ntpclient的下载地址是：https://github.com/CambriconKnight/ntpclient
 
-## NTPClient交叉编译
+## 2.2 NTPClient交叉编译
 下载好后，解压，进入解压后的目录进行交叉编译。
 交叉编译环境搭建参考：https://github.com/CambriconKnight/mlu220-cross-compile-docker-image
 1.修改Makefile
 ```bash
-# To cross-compile
+# 3. To cross-compile
     CC = aarch64-linux-gnu-gcc
 ```
 2.交叉编译
@@ -25,20 +25,20 @@ ntpclient的下载地址是：https://github.com/CambriconKnight/ntpclient
 make
 ```
 
-## 拷贝到MLU220-SOM目标板
+## 3.1 拷贝到MLU220-SOM目标板
 拷贝编译得到的ntpclient文件至目标板/cambricon/目录下，并加可执行权限
 ```bash
 chmod +x ntpclient
 ```
 
-## 查看网络授时服务器网址
+## 3.2 查看网络授时服务器网址
 测试校时前，我们需要一个网络授时服务器网址：
 ```bash
 http://www.ntp.org.cn/
 ```
 这个是授时中心网页，在这个上面可以找到需要的授时中心网址。以下选择上海交通大学网络中心NTP服务器地址（202.120.2.101），实测可用。
 
-## 执行NTPClient
+## 3.3 执行NTPClient
 在MLU220-SOM目标板上运行程序NTPClient，实现NTP校时。
 ```bash
 ./ntpclient -s -d -c 1 -i 5 -h 202.120.2.101
@@ -90,7 +90,7 @@ Mon Jul 26 03:02:12 UTC 2021
 export TZ=CST-8
 ```
 
-## 实现上电自动校时
+## 3.4 实现上电自动校时
 最后需要将前面命令加入MLU220-SOM目标板启动脚本，从而实现上电自动同步网络时间。
 
 1.在开机脚本（我的是/etc/init.d/rcS)中修改下面几句话（ntpclient所在目录我的是/cambricon/ntpclient，以实际为准）：
@@ -107,6 +107,6 @@ export TZ=CST-8
 
 **注：以上修改涉及BSP部分修改的，需要根据自身系统灵活实现。**
 
-# 附录
-## MLU220-SOM简述
+# 4. 附录
+## 4.1 MLU220-SOM简述
 寒武纪 MLU220-SOM 边缘端人工智能模组，专为边缘端AI推理设计。采用寒武纪MLUv02架构，高集成，在信用卡大小的模组上可实现 16TOPS（INT8） AI 性能，可提供 INT16，INT8，INT4 的全面精度支持，满足多样化的神经网络的计算力要求。MLU220-SOM 可以满足在 -40℃ ~ 105℃ 宽温环境下各种严苛的户外部署要求，功耗仅为 15W，支持视觉、语音自然语言处理等多样化的AI应用，实现各种业务的边缘端单模组解决方案。MLU220-SOM 已广泛应用于智慧交通、智慧能源、智慧轨道交通等AI落地应用中。
