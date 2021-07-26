@@ -2,7 +2,7 @@
 #    CFLAGS += -xO2 -Xc
 #    LDLIBS += -lnsl -lsocket
 # To cross-compile
-#    CC = arm-linux-gcc
+    CC = aarch64-linux-gnu-gcc
 # To use clang
 #    CC = clang
 # To check for lint
