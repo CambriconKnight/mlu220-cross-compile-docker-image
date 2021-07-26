@@ -15,30 +15,29 @@ ntpclient的下载地址是：https://github.com/CambriconKnight/ntpclient
 ## 2.2 NTPClient交叉编译
 下载好后，解压，进入解压后的目录进行交叉编译。
 交叉编译环境搭建参考：https://github.com/CambriconKnight/mlu220-cross-compile-docker-image
-1.修改Makefile
+1. 修改Makefile
 ```bash
-# 3. To cross-compile
     CC = aarch64-linux-gnu-gcc
 ```
-2.交叉编译
+2. 交叉编译
 ```bash
 make
 ```
 
-## 3.1 拷贝到MLU220-SOM目标板
+## 2.3 拷贝到MLU220-SOM目标板
 拷贝编译得到的ntpclient文件至目标板/cambricon/目录下，并加可执行权限
 ```bash
 chmod +x ntpclient
 ```
 
-## 3.2 查看网络授时服务器网址
+## 2.4. 查看网络授时服务器网址
 测试校时前，我们需要一个网络授时服务器网址：
 ```bash
 http://www.ntp.org.cn/
 ```
 这个是授时中心网页，在这个上面可以找到需要的授时中心网址。以下选择上海交通大学网络中心NTP服务器地址（202.120.2.101），实测可用。
 
-## 3.3 执行NTPClient
+## 2.5 执行NTPClient
 在MLU220-SOM目标板上运行程序NTPClient，实现NTP校时。
 ```bash
 ./ntpclient -s -d -c 1 -i 5 -h 202.120.2.101
@@ -90,7 +89,7 @@ Mon Jul 26 03:02:12 UTC 2021
 export TZ=CST-8
 ```
 
-## 3.4 实现上电自动校时
+## 2.6 实现上电自动校时
 最后需要将前面命令加入MLU220-SOM目标板启动脚本，从而实现上电自动同步网络时间。
 
 1.在开机脚本（我的是/etc/init.d/rcS)中修改下面几句话（ntpclient所在目录我的是/cambricon/ntpclient，以实际为准）：
@@ -107,6 +106,6 @@ export TZ=CST-8
 
 **注：以上修改涉及BSP部分修改的，需要根据自身系统灵活实现。**
 
-# 4. 附录
-## 4.1 MLU220-SOM简述
+# 3. 附录
+## 3.1 MLU220-SOM简述
 寒武纪 MLU220-SOM 边缘端人工智能模组，专为边缘端AI推理设计。采用寒武纪MLUv02架构，高集成，在信用卡大小的模组上可实现 16TOPS（INT8） AI 性能，可提供 INT16，INT8，INT4 的全面精度支持，满足多样化的神经网络的计算力要求。MLU220-SOM 可以满足在 -40℃ ~ 105℃ 宽温环境下各种严苛的户外部署要求，功耗仅为 15W，支持视觉、语音自然语言处理等多样化的AI应用，实现各种业务的边缘端单模组解决方案。MLU220-SOM 已广泛应用于智慧交通、智慧能源、智慧轨道交通等AI落地应用中。
