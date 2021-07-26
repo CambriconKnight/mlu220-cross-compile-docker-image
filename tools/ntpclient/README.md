@@ -3,7 +3,7 @@
 NTP是网络时间协议(Network Time Protocol)的简称，它是用来同步网络中各个计算机设备的时间的协议。
 
 # 2. NTPClient
-为了支持精简版嵌入式Linux系统NTP校时，本文推荐的是第三方代码ntpclient保持时间同步：
+为了支持精简版嵌入式Linux系统NTP校时，以下介紹的是第三方代码ntpclient保持时间同步：
 ```bash
 ntpclient is an NTP (RFC-1305) client for unix-alike computers. Its functionality is a small subset of xntpd, but IMHO performs better (or at least has the potential to function better) within that limited scope. Since it is much smaller than xntpd, it is also more relevant for embedded computers.
 ntpclient is Copyright (C) 1997-2015 Larry Doolittle, and may be freely copied and modified according to the terms of the GNU General Public License, version 2.
