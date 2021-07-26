@@ -84,9 +84,17 @@ Mon Jul 26 03:02:12 UTC 2021
 ```
 其中那些参数可以阅读解压后的目录下的README文件，里面有详细的说明，需要提示的是-g不能使用，可能是嵌入式设备不支持。
 
-使用【date】来查看一下系统时间，如果时区不是中国的东八区，可设置环境变量。设置后就可以显示中国时间了。
+使用【date】来查看一下系统时间，如果时区不是中国的东八区，可设置环境变量。
 ```bash
 export TZ=CST-8
+```
+设置后就可以显示中国时间了。
+```bash
+[root@cambricon /cambricon]# date
+Mon Jul 26 03:02:12 UTC 2021
+[root@cambricon /cambricon]# export TZ=CST-8
+[root@cambricon /cambricon]# date
+Mon Jul 26 11:12:09 CST 2021
 ```
 
 ## 2.6 实现上电自动校时
