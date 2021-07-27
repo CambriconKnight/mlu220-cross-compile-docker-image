@@ -45,7 +45,7 @@ Ubuntu16.04: http://mirrors.aliyun.com/ubuntu-releases/16.04
 
 Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 
-其他开发资料, 可前往寒武纪开发者社区注册账号,按需下载.
+其他开发资料, 可前往[寒武纪开发者社区](https://developer.cambricon.com)注册账号,按需下载.
 
 **预装软件**
 
