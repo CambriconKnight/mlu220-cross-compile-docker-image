@@ -3,6 +3,7 @@
 Build docker images for mlu220-cross-compile.
 
 **功能说明**
+
 此工具包集成了如下功能:
 
 - 基于Dockerfile自动编译Docker镜像 >> 启动Docker容器
@@ -35,11 +36,15 @@ Build docker images for mlu220-cross-compile.
 | GCC_ARMM0_MLU220EDGE  | gcc-arm-none-eabi-8-2018-q4-major.tar.gz              | M0 交叉编译器                          |
 
 **Download:**
+
 Ubuntu16.04: http://mirrors.aliyun.com/ubuntu-releases/16.04
+
 Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
+
 其他开发资料, 可前往寒武纪开发者社区注册账号,按需下载.
 
 **预装软件**
+
 以下软件/工具已经安装到Docker容器中了:
 
 - curl
@@ -65,13 +70,13 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 - cntoolkit-edge
 
 **环境变量**
+
 以下环境变量在Docker容器中已经设置:
 
 - BIN_DIR_GCC_Linaro=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
 - BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
 - PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
 - NEUWARE_HOME=/opt/cambricon/neuware/pc
-
 
 # 2. Directory tree
 
