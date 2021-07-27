@@ -35,7 +35,7 @@ Build docker images for mlu220-cross-compile.
 | GCC_LINARO_MLU220EDGE | gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz | ARM64 交叉编译器                       |
 | GCC_ARMM0_MLU220EDGE  | gcc-arm-none-eabi-8-2018-q4-major.tar.gz              | M0 交叉编译器                          |
 
-以上软件环境中文件名词, 如有版本升级及名称变化, 可以在 env.sh 中进行修改.
+注: 以上软件环境中文件名词, 如有版本升级及名称变化, 可以在 env.sh 中进行修改.
 
 **Download:**
 
