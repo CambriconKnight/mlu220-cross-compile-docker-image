@@ -8,12 +8,12 @@ Build docker images for mlu220-cross-compile.
 
 - 基于Dockerfile自动编译Docker镜像 >> 启动Docker容器
 - 系统完整源码包交叉编译与验证
-- CNStream交叉编译
-- CNRT交叉编译
-- CNCodec交叉编译与验证
-- EasyDK交叉编译
-- FFMpeg-MLU交叉编译
-- 单独交叉编译第三方常用工具: GFlags、Glogs、OpenCV、FFMpeg、Live555、FreeType、Perf
+- CNStream交叉编译与验证
+- ~~CNRT交叉编译与验证~~
+- ~~CNCodec交叉编译与验证~~
+- ~~EasyDK交叉编译与验证~~
+- ~~FFMpeg-MLU交叉编译与验证~~
+- ~~单独交叉编译第三方常用工具: GFlags、Glogs、OpenCV、FFMpeg、Live555、FreeType、Perf~~
 
 **硬件环境准备:**
 
