@@ -2,7 +2,7 @@
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     build-mlu220-cross-compile-image.sh
-# UpdateDate:   2021/01/25
+# UpdateDate:   2021/07/14
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:
 #               #Build docker images: install gcc-linaro + cntoolkit-edge
@@ -57,18 +57,14 @@ refresh_global_variables() {
         help_info
     fi
     VERSION="v${VER}"
-    PATH_WORK="mlu220-cross-compile"
-    neuware_version="neuware-${MLU}-${VER}"
-    neuware_package_name="cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb"
-    NAME_IMAGE="ubuntu16.04_mlu220-cross-compile:$VERSION"
-    FILENAME_IMAGE="ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz"
+    #PATH_WORK="mlu220-cross-compile"
+    NAME_IMAGE="ubuntu16.04_$PATH_WORK:$VERSION"
+    FILENAME_IMAGE="ubuntu16.04_$PATH_WORK-$VERSION.tar.gz"
 }
 
 #################### main ####################
-#MLU Platform
-MLU="mlu270"
-#Version
-VER="1.6.0"
+# Source env
+source "./env.sh"
 
 #Global variables
 #UPPERCASE:mlu270--->MLU270
@@ -77,15 +73,6 @@ VERSION="v${VER}"
 PATH_WORK="mlu220-cross-compile"
 NAME_IMAGE="ubuntu16.04_$PATH_WORK:$VERSION"
 FILENAME_IMAGE="ubuntu16.04_$PATH_WORK-$VERSION.tar.gz"
-#neuware
-neuware_version="neuware-${MLU}-${VER}"
-neuware_package_name="cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb"
-#gcc-linaro
-FILENAME_MLU220_GCC_LINARO="gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz"
-#gcc-arm-none-eabi
-FILENAME_MLU220_GCC_ARM="gcc-arm-none-eabi-8-2018-q4-major.tar.gz"
-#cntoolkit-edge
-FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.4.110-1_arm64.tar.gz"
 
 ##FLAG_with_***_installed
 FLAG_with_neuware_installed=0
@@ -96,7 +83,6 @@ FLAG_with_neuware_installed2dockerfile="no"
 FLAG_with_gcc_linaro_installed2dockerfile="yes"
 FLAG_with_gcc_arm_installed2dockerfile="no"
 FLAG_with_cntoolkit_edge_installed2dockerfile="yes"
-
 
 none="\033[0m"
 green="\033[0;32m"
