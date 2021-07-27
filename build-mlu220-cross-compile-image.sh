@@ -200,7 +200,7 @@ fi
 
 #1.build image
 echo "====================== build image ======================"
-sudo docker build -f ./$FILENAME_DOCKERFILE \
+sudo docker build -f ../${DIR_DOCKER}/$FILENAME_DOCKERFILE \
     --build-arg neuware_package=${NeuwarePackageName} \
     --build-arg mlu_platform=${MLU_Platform} \
     --build-arg mlu220_cntoolkit_edge=${FILENAME_MLU220_CNToolkit} \
