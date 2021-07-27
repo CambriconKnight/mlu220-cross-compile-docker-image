@@ -2,11 +2,46 @@
 
 Build docker images for mlu220-cross-compile.
 
+**功能说明**
 此工具包集成了如下功能:
 
-基于Dockerfile自动编译Docker镜像 >> 启动Docker容器 >> 一键交叉编译CNStream-MLU220Edge >> 生成CNStream-MLU220Edge部署包 >> 部署到MLU220SOM开发板卡 >> 验证CNStream-MLU220Edge实例
+- 基于Dockerfile自动编译Docker镜像 >> 启动Docker容器
+- 系统完整源码包交叉编译与验证
+- CNStream交叉编译
+- CNRT交叉编译
+- CNCodec交叉编译与验证
+- EasyDK交叉编译
+- FFMpeg-MLU交叉编译
+- 单独交叉编译第三方常用工具: GFlags、Glogs、OpenCV、FFMpeg、Live555、FreeType、Perf
 
-Installed software:
+**硬件环境准备:**
+
+| 名称           | 数量      | 备注                  |
+| :------------ | :--------- | :------------------ |
+| 开发主机/服务器  | 一台       | 主流配置即可          |
+| MLU220SOM     | 一台        |                     |
+| 电源适配器      | 一套        | 12V 2A DC电源输出    |
+| USB转TTL串口线  | 一条        |                    |
+
+**软件环境准备:**
+
+| 名称                   | 版本                                                  | 备注                                 |
+| :-------------------- | :-------------------------------                      | :---------------------------------- |
+| Linux OS              | Ubuntu16.04/Ubuntu18.04/CentOS7                       | 宿主机操作系统                         |
+| Driver_MLU270         | neuware-mlu270-driver-dkms_4.9.2_all.deb              | MLU270驱动安装包(依操作系统选择)         |
+| CNToolkit_MLU270      | cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb               | Neuware SDK For MLU270(依操作系统选择) |
+| CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.3-1_arm64.tar.gz                   | Neuware SDK For MLU220               |
+| GCC_LINARO_MLU220EDGE | gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz | ARM64 交叉编译器                       |
+| GCC_ARMM0_MLU220EDGE  | gcc-arm-none-eabi-8-2018-q4-major.tar.gz              | M0 交叉编译器                          |
+
+**Download:**
+Ubuntu16.04: http://mirrors.aliyun.com/ubuntu-releases/16.04
+Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
+其他开发资料, 可前往寒武纪开发者社区注册账号,按需下载.
+
+**预装软件**
+以下软件/工具已经安装到Docker容器中了:
+
 - curl
 - git
 - wget
@@ -29,12 +64,14 @@ Installed software:
 - gcc-arm-none-eabi
 - cntoolkit-edge
 
-These environment variables has been set in the container:
+**环境变量**
+以下环境变量在Docker容器中已经设置:
 
 - BIN_DIR_GCC_Linaro=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
 - BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
 - PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
 - NEUWARE_HOME=/opt/cambricon/neuware/pc
+
 
 # 2. Directory tree
 
@@ -159,7 +196,7 @@ out
 # 9. CNStream-MLU220Edge交叉编译与验证
 MLU220交叉编译Docker镜像编译生成后，接下来可基于此镜像进行MLU220Edge实例程序的交叉编译与验证：
 
-启动容器 >> 交叉编译 >> MLU220SOM验证
+启动容器 >> 一键交叉编译 CNStream-MLU220Edge >> 生成 CNStream-MLU220Edge 部署包 >> 部署到 MLU220SOM 开发板卡 >> 验证 CNStream-MLU220Edge实例
 
 以下基于寒武纪实时数据流分析开源框架[CNStream](https://github.com/Cambricon/CNStream)进行交叉编译与验证.
 
