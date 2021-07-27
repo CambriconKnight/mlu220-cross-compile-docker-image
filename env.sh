@@ -12,9 +12,9 @@
 #Version
 VER="1.7.0"
 #Neuware SDK For MLU270(依操作系统选择)
-neuware_package_name="cntoolkit_1.4.110-1.ubuntu16.04_amd64.deb"
+neuware_package_name="cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb"
 # Neuware SDK For MLU220
-FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.4.110-1_arm64.tar.gz"
+FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.7.3-1_arm64.tar.gz"
 #ARM64 交叉编译器
 FILENAME_MLU220_GCC_LINARO="gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz"
 #M0 交叉编译器
