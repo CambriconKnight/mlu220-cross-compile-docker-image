@@ -2,7 +2,7 @@
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     run-container-mlu220-cross-compile.sh
-# UpdateDate:   2021/04/26
+# UpdateDate:   2021/07/26
 # Description:  Run docker image for IDE.
 # Example:      ./run-container-mlu220-cross-compile.sh
 # Depends:      container-$OS-$PATH_WORK-$VERSION

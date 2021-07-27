@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
-# Filename:     load-image--mlu220-cross-compile.sh
+# Filename:     load-image-mlu220-cross-compile.sh
 # UpdateDate:   2021/07/26
 # Description:  Loading docker image for IDE.
-# Example:      ./load-image--mlu220-cross-compile.sh
+# Example:      ./load-image-mlu220-cross-compile.sh
 # Depends:      image-$OS-$PATH_WORK-$VERSION.tar.gz
 # Notes:
 # -------------------------------------------------------------------------------

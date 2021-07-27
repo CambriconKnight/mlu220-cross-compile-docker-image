@@ -94,7 +94,7 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 ├── docker                                  （存储dockerfile相关文件）
 ├── easydk                                  （easydk的交叉编译开发目录，未完......待自测验证后提交）
 ├── 3rdparty                                （3rdparty的交叉编译开发目录，未完......待自测验证后提交）
-├── load-image--mlu220-cross-compile.sh     （加载docker镜像）
+├── load-image-mlu220-cross-compile.sh      （加载docker镜像）
 ├── README.md                               （readme）
 ├── res                                     （readme文档中涉及到的图片资源存放路径）
 ├── run-container-mlu220-cross-compile.sh   （启动docker容器）
@@ -128,7 +128,7 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 # 5. Load
 ```bash
 #加载Docker镜像
-./load-image--mlu220-cross-compile.sh
+./load-image-mlu220-cross-compile.sh
 ```
 
 # 6. Run
