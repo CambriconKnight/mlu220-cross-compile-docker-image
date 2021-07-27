@@ -188,7 +188,7 @@ if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNToolkit} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_CNToolkit}) into the directory!${none}"
-        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU220/$VERSION/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU220/$VER/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/product/MLU220/1.7.0/mlu220edge/cntoolkit-edge_1.4.110-1_arm64.tar.gz ./mlu220-cross-compile
         exit -1
