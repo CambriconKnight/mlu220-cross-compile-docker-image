@@ -20,13 +20,13 @@ set -e
 #               cntoolkit-edge_1.4.110-1_arm64.tar.gz(ftp://download.cambricon.com:8821/***/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
 # Notes:
 #               1.gcc-linaro&cntoolkit-edge has been deployed to the container.
-#                 gcc-linaro(/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu)
-#                 cntoolkit-edge-1.4.110(/opt/cambricon/neuware/pc/lib64)
+#                 gcc-linaro(/opt/work/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu)
+#                 cntoolkit-edge-1.4.110(/opt/work/neuware/pc/lib64)
 #               2.These environment variables has been set in the container
-#                 BIN_DIR_GCC_Linaro=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
-#                 BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
+#                 BIN_DIR_GCC_Linaro=/opt/work/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
+#                 BIN_DIR_GCC_ARM=/opt/work/gcc-arm-none-eabi-8-2018-q4-major/bin
 #                 PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
-#                 NEUWARE_HOME=/opt/cambricon/neuware/pc
+#                 NEUWARE_HOME=/opt/work/neuware/pc
 # -------------------------------------------------------------------------------
 #################### function ####################
 help_info() {
@@ -131,7 +131,7 @@ if [ $FLAG_with_neuware_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${NeuwarePackageName} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${NeuwarePackageName}) into the directory!${none}"
-        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU270/$VERSION/Ubuntu16.04/CNToolkit/${NeuwarePackageName} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/MLU270/$VERSION/Ubuntu16.04/CNToolkit/${NeuwarePackageName} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/product/MLU270/v1.7.0/Ubuntu16.04/CNToolkit/cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb ./mlu220-cross-compile
         exit -1
@@ -150,7 +150,7 @@ if [ $FLAG_with_gcc_linaro_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_LINARO} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_LINARO}) into the directory!${none}"
-        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU220/cross-compile-toolchain/aarch64/${FILENAME_MLU220_GCC_LINARO} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/MLU220/cross-compile-toolchain/aarch64/${FILENAME_MLU220_GCC_LINARO} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/mlu220/cross-compile-toolchain/aarch64/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz ./mlu220-cross-compile
         exit -1
@@ -169,7 +169,7 @@ if [ $FLAG_with_gcc_arm_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${FILENAME_MLU220_GCC_ARM} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_GCC_ARM}) into the directory!${none}"
-        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU220/cross-compile-toolchain/m0/${FILENAME_MLU220_GCC_ARM} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/MLU220/cross-compile-toolchain/m0/${FILENAME_MLU220_GCC_ARM} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/product/MLU220/cross-compile-toolchain/m0/gcc-arm-none-eabi-8-2018-q4-major.tar.gz ./mlu220-cross-compile
         exit -1
@@ -188,7 +188,7 @@ if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNToolkit} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_CNToolkit}) into the directory!${none}"
-        echo -e "${yellow}  eg:cp -v /data/ftp/product/MLU220/$VER/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/MLU220/$VER/mlu220edge/${FILENAME_MLU220_CNToolkit} ./${PATH_WORK}${none}"
         #Manual copy
         #cp -v /data/ftp/product/MLU220/1.7.0/mlu220edge/cntoolkit-edge_1.4.110-1_arm64.tar.gz ./mlu220-cross-compile
         exit -1
@@ -197,14 +197,6 @@ if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
 else
     FLAG_with_cntoolkit_edge_installed2dockerfile="no"
 fi
-
-cd -
-# 0.check
-if [ ! -d "$DIR_DOCKER" ];then
-    echo "Directory($DIR_DOCKER): Does Not Exist!"
-    exit -1
-fi
-cd "${DIR_DOCKER}"
 
 #1.build image
 echo "====================== build image ======================"
@@ -225,5 +217,6 @@ echo "====================== save image ======================"
 sudo docker save -o $FILENAME_IMAGE $NAME_IMAGE
 sync && sync
 sudo chmod 664 $FILENAME_IMAGE
-ls -la $FILENAME_IMAGE
+mv $FILENAME_IMAGE ../${DIR_DOCKER}/
 cd ../
+ls -la ./${DIR_DOCKER}/$FILENAME_IMAGE
