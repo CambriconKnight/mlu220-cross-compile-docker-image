@@ -75,27 +75,27 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 
 以下环境变量在Docker容器中已经设置:
 
-- BIN_DIR_GCC_Linaro=/opt/cambricon/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
-- BIN_DIR_GCC_ARM=/opt/cambricon/gcc-arm-none-eabi-8-2018-q4-major/bin
+- BIN_DIR_GCC_Linaro=/opt/work/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
+- BIN_DIR_GCC_ARM=/opt/work/gcc-arm-none-eabi-8-2018-q4-major/bin
 - PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
-- NEUWARE_HOME=/opt/cambricon/neuware/pc
+- NEUWARE_HOME=/opt/work/neuware/pc
 
 # 2. Directory tree
 
 ```bash
 .
-├── build-mlu220-cross-compile-image.sh         （编译出MLU220交叉编译开发环境的脚本）
-├── clean.sh                                    （清理Build出来的临时目录或文件,包括镜像文件,已加载的镜像,已加载的容器等）
-├── cncodec                                     （cncodec的交叉编译开发目录，未完......待自测验证后提交）
-├── cnrt                                        （cnrt的交叉编译开发目录，未完......待自测验证后提交）
-├── cnstream                                    （cnstream的交叉编译开发目录，已完）
-├── Dockerfile.16.04                            （dockerfile）
-├── easydk                                      （easydk的交叉编译开发目录，未完......待自测验证后提交）
-├── load-image-mlu220-cross-compile.sh          （加载docker镜像）
-├── README.md                                   （readme）
-├── res                                         （readme文档中涉及到的图片资源存放路径）
-├── run-container-mlu220-cross-compile.sh       （启动docker容器）
-└── tools                                       （交叉编译中常用的小工具和脚本）
+├── build-image-ubuntu16.04-mlu220-cross-compile.sh         （编译出MLU220交叉编译开发环境的脚本）
+├── clean.sh                                                （清理Build出来的临时目录或文件,包括镜像文件,已加载的镜像,已加载的容器等）
+├── cncodec                                                 （cncodec的交叉编译开发目录，未完......待自测验证后提交）
+├── cnrt                                                    （cnrt的交叉编译开发目录，未完......待自测验证后提交）
+├── cnstream                                                （cnstream的交叉编译开发目录，已完）
+├── docker                                                  （存储dockerfile相关文件）
+├── easydk                                                  （easydk的交叉编译开发目录，未完......待自测验证后提交）
+├── load-image-ubuntu16.04-mlu220-cross-compile.sh          （加载docker镜像）
+├── README.md                                               （readme）
+├── res                                                     （readme文档中涉及到的图片资源存放路径）
+├── run-container-ubuntu16.04-mlu220-cross-compile.sh       （启动docker容器）
+└── tools                                                   （交叉编译中常用的小工具和脚本）
 ```
 
 # 3. Clone
@@ -107,31 +107,31 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 ```bash
 #编译完成后，会在本地生成一个docker镜像。
 #编译Docker镜像：安装 gcc-linaro + cntoolkit-edge
-./build-mlu220-cross-compile-image.sh -l 1 -c 1
+./build-image-ubuntu16.04-mlu220-cross-compile.sh -l 1 -c 1
 #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
-#./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1 -a 1
 #编译Docker镜像：安装 Neuware + gcc-linaro
-#./build-mlu220-cross-compile-image.sh -n 1 -l 1
+#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1
 #编译Docker镜像：安装 Neuware + gcc-arm
-#./build-mlu220-cross-compile-image.sh -n 1 -a 1
+#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -a 1
 ```
-编译后会在当前目录下生存一个镜像文件。$VERSION版本以实际为准
+编译后会在docker目录下生存一个镜像文件。$VERSION版本以实际为准
 ```bash
 ......
 ====================== save image ======================
--rw------- 1 root root 2887489536 1月  26 11:23 ubuntu16.04_mlu220-cross-compile-$VERSION.tar.gz
+-rw-rw-r-- 1 root root 3785447424 7月  27 18:35 ./docker/image-ubuntu16.04-mlu220-cross-compile-$VERSION.tar.gz
 ```
 
 # 5. Load
 ```bash
 #加载Docker镜像
-./load-image-mlu220-cross-compile.sh
+./load-image-ubuntu16.04-mlu220-cross-compile.sh
 ```
 
 # 6. Run
 ```bash
 #启动Docker容器
-./run-container-mlu220-cross-compile.sh
+./run-container-ubuntu16.04-mlu220-cross-compile.sh
 ```
 
 # 7. Test
@@ -146,14 +146,14 @@ arm-none-eabi-gcc -v
 ## 8.1. 完整编译
 ```bash
 #进入默认目录
-cd /opt/cambricon
+cd /opt/work
 mkdir opensrc
 #拷贝源码包（非必要）。拷贝在driver 包的release/neuware/opensrc ⽬录下有opensrc.tar.gz 压缩⽂件
 #cp /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.tar.gz ./
 #(直接)解压源码包。源码包以实际共享目录为准，解压后，可以得到开源的源码。
-tar zxf /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.tar.gz -C /opt/cambricon/opensrc
+tar zxf /home/ftp/mlu220/IVA-1.6.106/mlu220edge/release/neuware/opensrc/opensrc.tar.gz -C /opt/work/opensrc
 #编译完整源码包
-cd /opt/cambricon/opensrc/mlu220_build/build/
+cd /opt/work/opensrc/mlu220_build/build/
 make plat=edge
 ```
 - 常见问题-1：
@@ -170,25 +170,25 @@ Makefile:197: recipe for target 'linux-sys' failed
 make: *** [linux-sys] Error 127
 ```
 
-解决措施：可以增加[#!/bin/bash]内容到脚本首行/opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+解决措施：可以增加[#!/bin/bash]内容到脚本首行/opt/work/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
 ```bash
 #手动编辑增加[#!/bin/bash]内容到脚本首行
-#vi /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+#vi /opt/work/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
 #命令方式增加[#!/bin/bash]内容到脚本首行
-sed -i '1i\#!/bin/bash' /opt/cambricon/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
+sed -i '1i\#!/bin/bash' /opt/work/opensrc/mlu220_build/build/tools/generate_bsp_pkg.sh
 ```
 
 修改脚本后，再次编译源码包即可。
 ```bash
 #编译完整源码包
-cd /opt/cambricon/opensrc/mlu220_build/build/
+cd /opt/work/opensrc/mlu220_build/build/
 make plat=edge
 #查看编译后的文件
-/opt/cambricon/opensrc/mlu220_build/build/out/
+/opt/work/opensrc/mlu220_build/build/out/
 ```
 
 ## 8.2. 编译结果
-编译完成后在/opt/cambricon/opensrc/mlu220_build/build/out/ ⽬录下⽣成如下⽂件:
+编译完成后在/opt/work/opensrc/mlu220_build/build/out/ ⽬录下⽣成如下⽂件:
 ```bash
 out
 |-- bsp

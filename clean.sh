@@ -1,21 +1,14 @@
 #/bin/bash
 set -e
 
-VER="1.6.0"
-VERSION="v${VER}"
-PATH_WORK="mlu220-cross-compile"
-NAME_IMAGE="ubuntu16.04_$PATH_WORK:$VERSION"
-FILENAME_IMAGE="ubuntu16.04_$PATH_WORK-$VERSION.tar.gz"
-#Docker container name
-MY_CONTAINER="container-$PATH_WORK-$VERSION"
-#Docker image
-MY_IMAGE="ubuntu16.04_$PATH_WORK"
+# Source env
+source "./env.sh"
 
 # 1.PATH_WORK
 sudo rm -rvf ${PATH_WORK}
 
 # 2.FILENAME_IMAGE
-sudo rm -vf ${FILENAME_IMAGE}
+sudo rm -vf ${FULLNAME_IMAGE}
 
 # 3.rm docker container
 #sudo docker stop `sudo docker ps -a | grep container-mlu220-cross-compile | awk '{print $1}'`

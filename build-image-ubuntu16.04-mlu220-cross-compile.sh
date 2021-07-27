@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
-# Filename:     build-mlu220-cross-compile-image.sh
+# Filename:     build-image-ubuntu16.04-mlu220-cross-compile.sh
 # UpdateDate:   2021/07/14
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:
 #               #Build docker images: install gcc-linaro + cntoolkit-edge
-#               ./build-mlu220-cross-compile-image.sh -l 1 -c 1
+#               ./build-image-ubuntu16.04-mlu220-cross-compile.sh -l 1 -c 1
 #               #Build docker images: install Neuware + gcc-linaro + gcc-arm
-#               #./build-mlu220-cross-compile-image.sh -n 1 -l 1 -a 1
+#               #./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1 -a 1
 #               #Build docker images: install Neuware + gcc-linaro
-#               #./build-mlu220-cross-compile-image.sh -n 1 -l 1
+#               #./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1
 #               #Build docker images: install Neuware + gcc-arm
-#               #./build-mlu220-cross-compile-image.sh -n 1 -a 1
+#               #./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -a 1
 # Depends:
 #               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb(ftp://download.cambricon.com:8821/***/neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb)
 #               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz(ftp://download.cambricon.com:8821/***/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
@@ -57,10 +57,6 @@ refresh_global_variables() {
     else
         help_info
     fi
-    VERSION="v${VER}"
-    #PATH_WORK="mlu220-cross-compile"
-    NAME_IMAGE="ubuntu16.04_$PATH_WORK:$VERSION"
-    FILENAME_IMAGE="ubuntu16.04_$PATH_WORK-$VERSION.tar.gz"
 }
 
 #################### main ####################
