@@ -65,7 +65,8 @@ refresh_global_variables() {
 #################### main ####################
 # Source env
 source "./env.sh"
-
+#MLU Platform
+MLU="mlu270"
 #Global variables
 #UPPERCASE:mlu270--->MLU270
 MLU_Platform=`echo ${MLU} | tr '[a-z]' '[A-Z]'`
