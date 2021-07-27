@@ -313,3 +313,20 @@ cd /cambricon/nfs/cnstream_mlu220edge
 cd /cambricon/nfs/cnstream_mlu220edge/samples/demo/detection/mlu220
 ./run_yolov3_mlu220.sh
 ```
+
+- 常见问题-2：
+问题描述：如何为设备配置固定IP?
+解决措施：
+1. 开机后挂载boot，在arm端执行：
+```bash
+mount -t ext4 -o sync /dev/mmcblk0.boot /boot
+```
+2. cd /boot，并在该目录下创建或者修改uenv_extra.txt
+3. vi uenv_extra.txt键入ip、网关等信息，如下(-->***为注释信息)：
+```bash
+ipaddr=10.4.120.49    -->arm的ip
+serverip=10.4.120.57  -->x86服务器的ip
+ethaddr=b2:63:9e:e2:92:00 -->mac地址
+netmask=255.255.255.0   -->子网掩码
+gatewayip=10.4.120.1   -->网关
+```
