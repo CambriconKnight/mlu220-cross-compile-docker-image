@@ -86,19 +86,19 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 
 ```bash
 .
-├── build-image-ubuntu16.04-mlu220-cross-compile.sh         （编译出MLU220交叉编译开发环境的脚本）
-├── clean.sh                                                （清理Build出来的临时目录或文件,包括镜像文件,已加载的镜像,已加载的容器等）
-├── cncodec                                                 （cncodec的交叉编译开发目录，未完......待自测验证后提交）
-├── cnrt                                                    （cnrt的交叉编译开发目录，未完......待自测验证后提交）
-├── cnstream                                                （cnstream的交叉编译开发目录，已完）
-├── docker                                                  （存储dockerfile相关文件）
-├── easydk                                                  （easydk的交叉编译开发目录，未完......待自测验证后提交）
-├── 3rdparty                                                （3rdparty的交叉编译开发目录，未完......待自测验证后提交）
-├── load-image-ubuntu16.04-mlu220-cross-compile.sh          （加载docker镜像）
-├── README.md                                               （readme）
-├── res                                                     （readme文档中涉及到的图片资源存放路径）
-├── run-container-ubuntu16.04-mlu220-cross-compile.sh       （启动docker容器）
-└── tools                                                   （交叉编译中常用的小工具和脚本）
+├── build-image-mlu220-cross-compile.sh     （编译出MLU220交叉编译开发环境的脚本）
+├── clean.sh                                （清理Build出来的临时目录或文件,包括镜像文件,已加载的镜像,已加载的容器等）
+├── cncodec                                 （cncodec的交叉编译开发目录，未完......待自测验证后提交）
+├── cnrt                                    （cnrt的交叉编译开发目录，未完......待自测验证后提交）
+├── cnstream                                （cnstream的交叉编译开发目录，已完）
+├── docker                                  （存储dockerfile相关文件）
+├── easydk                                  （easydk的交叉编译开发目录，未完......待自测验证后提交）
+├── 3rdparty                                （3rdparty的交叉编译开发目录，未完......待自测验证后提交）
+├── load-image--mlu220-cross-compile.sh     （加载docker镜像）
+├── README.md                               （readme）
+├── res                                     （readme文档中涉及到的图片资源存放路径）
+├── run-container-mlu220-cross-compile.sh   （启动docker容器）
+└── tools                                   （交叉编译中常用的小工具和脚本）
 ```
 
 # 3. Clone
@@ -110,13 +110,13 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 ```bash
 #编译完成后，会在本地生成一个docker镜像。
 #编译Docker镜像：安装 gcc-linaro + cntoolkit-edge
-./build-image-ubuntu16.04-mlu220-cross-compile.sh -l 1 -c 1
+./build-image-mlu220-cross-compile.sh -l 1 -c 1
 #编译Docker镜像：安装 Neuware + gcc-linaro + gcc-arm
-#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1 -a 1
+#./build-image-mlu220-cross-compile.sh -n 1 -l 1 -a 1
 #编译Docker镜像：安装 Neuware + gcc-linaro
-#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -l 1
+#./build-image-mlu220-cross-compile.sh -n 1 -l 1
 #编译Docker镜像：安装 Neuware + gcc-arm
-#./build-image-ubuntu16.04-mlu220-cross-compile.sh -n 1 -a 1
+#./build-image-mlu220-cross-compile.sh -n 1 -a 1
 ```
 编译后会在docker目录下生存一个镜像文件。$VERSION版本以实际为准
 ```bash
@@ -128,13 +128,13 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 # 5. Load
 ```bash
 #加载Docker镜像
-./load-image-ubuntu16.04-mlu220-cross-compile.sh
+./load-image--mlu220-cross-compile.sh
 ```
 
 # 6. Run
 ```bash
 #启动Docker容器
-./run-container-ubuntu16.04-mlu220-cross-compile.sh
+./run-container-mlu220-cross-compile.sh
 ```
 
 # 7. Test

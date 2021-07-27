@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
-# Filename:     run-container-ubuntu16.04-dev.sh
+# Filename:     run-container-mlu220-cross-compile.sh
 # UpdateDate:   2021/04/26
 # Description:  Run docker image for IDE.
-# Example:      ./run-container-ubuntu16.04-dev.sh
+# Example:      ./run-container-mlu220-cross-compile.sh
 # Depends:      container-$OS-$PATH_WORK-$VERSION
 # Notes:
 # -------------------------------------------------------------------------------

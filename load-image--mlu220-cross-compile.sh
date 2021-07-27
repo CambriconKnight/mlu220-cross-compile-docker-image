@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 # -------------------------------------------------------------------------------
-# Filename:     load-image-ubuntu16.04-dev.sh
-# UpdateDate:   2021/04/26
+# Filename:     load-image--mlu220-cross-compile.sh
+# UpdateDate:   2021/07/26
 # Description:  Loading docker image for IDE.
-# Example:      ./load-image-ubuntu16.04-dev.sh
+# Example:      ./load-image--mlu220-cross-compile.sh
 # Depends:      image-$OS-$PATH_WORK-$VERSION.tar.gz
 # Notes:
 # -------------------------------------------------------------------------------
