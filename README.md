@@ -2,7 +2,7 @@
 
 本[工具集](https://github.com/CambriconKnight/mlu220-cross-compile-docker-image)主要用于搭建基于寒武纪MLU220-SOM的交叉编译环境以及一些常用实例的交叉编译与验证。
 
-此工具集开发宗旨是"一键编译与验证", 力求压缩环境搭建与功能验证的时间成本, 以便使用者更快上手[MLU220-SOM](https://www.cambricon.com/index.php?m=content&c=index&a=lists&catid=56)。
+此工具集开发宗旨是"一键编译与验证", 力求压缩环境搭建与功能验证的时间成本, 以便更快上手[MLU220-SOM](https://www.cambricon.com/index.php?m=content&c=index&a=lists&catid=56)。
 
 **功能说明**
 
