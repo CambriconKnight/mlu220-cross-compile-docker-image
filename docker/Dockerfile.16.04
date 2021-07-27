@@ -29,14 +29,14 @@ ARG neuware_package=neuware-mlu270-1.5.0-1_Ubuntu16.04_amd64.deb
 ARG mlu_platform=MLU270
 ARG with_neuware_installed=no
 
+ARG mlu220_cntoolkit_edge=cntoolkit-edge_1.4.110-1_arm64.tar.gz
+ARG with_cntoolkit_edge_installed=yes
+
 ARG mlu220_gcc_linaro=gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
 ARG with_gcc_linaro_installed=yes
 
 ARG mlu220_gcc_arm=gcc-arm-none-eabi-8-2018-q4-major.tar.gz
 ARG with_gcc_arm_installed=no
-
-ARG mlu220_cntoolkit_edge=cntoolkit-edge_1.4.110-1_arm64.tar.gz
-ARG with_cntoolkit_edge_installed=yes
 
 RUN echo -e 'nameserver 114.114.114.114' > /etc/resolv.conf
 

@@ -12,7 +12,7 @@
 #Version
 VER="1.7.0"
 #Neuware SDK For MLU270(依操作系统选择)
-neuware_package_name="cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb"
+NeuwarePackageName="cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb"
 # Neuware SDK For MLU220
 FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.7.3-1_arm64.tar.gz"
 #ARM64 交叉编译器
@@ -20,6 +20,29 @@ FILENAME_MLU220_GCC_LINARO="gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tg
 #M0 交叉编译器
 FILENAME_MLU220_GCC_ARM="gcc-arm-none-eabi-8-2018-q4-major.tar.gz"
 
+#################### docker ####################
+#Work
+PATH_WORK="mlu220-cross-compile"
+#Dockerfile(16.04/18.04/CentOS)
+TYPE_DOCKERFILE="16.04"
+#(Dockerfile.16.04/Dockerfile.18.04/Dockerfile.CentOS)
+FILENAME_DOCKERFILE="Dockerfile.$TYPE_DOCKERFILE"
+DIR_DOCKER="docker"
+#Version
+VERSION="v${VER}"
+#Organization
+ORG="kang"
+#Operating system
+OS="ubuntu16.04"
+#Docker image
+MY_IMAGE="$ORG/$OS-$PATH_WORK"
+#Docker image name
+NAME_IMAGE="$MY_IMAGE:$VERSION"
+#FileName DockerImage
+FILENAME_IMAGE="image-$OS-$PATH_WORK-$VERSION.tar.gz"
+FULLNAME_IMAGE="./docker/${FILENAME_IMAGE}"
+#Docker container name
+MY_CONTAINER="container-$OS-$PATH_WORK-$VERSION"
 #################### color ####################
 #Font color
 none="\033[0m"
