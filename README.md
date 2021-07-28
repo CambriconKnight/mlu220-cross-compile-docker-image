@@ -1,4 +1,10 @@
-# 1. mlu220-cross-compile Docker Images
+<p align="center">
+    <a href="https://github.com/CambriconKnight/mlu220-cross-compile-docker-image">
+        <img alt="mlu220-som" src="./res/mlu220-som.jpg" height="140" />
+        <h1 align="center">MLU220-SOM交叉编译工具集</h1>
+    </a>
+</p>
+# 1. 概述
 
 本[工具集](https://github.com/CambriconKnight/mlu220-cross-compile-docker-image)主要用于搭建基于寒武纪MLU220-SOM的交叉编译环境以及一些常用实例的交叉编译与验证。
 
@@ -40,7 +46,7 @@
 
 注: 以上软件环境中文件名词, 如有版本升级及名称变化, 可以在 [env.sh](./env.sh) 中进行修改。
 
-**Download:**
+**下载地址:**
 
 Ubuntu16.04: http://mirrors.aliyun.com/ubuntu-releases/16.04
 
@@ -48,7 +54,7 @@ MLU220-SOM交叉编译工具集: https://github.com/CambriconKnight/mlu220-cross
 
 Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 
-其他开发资料, 可前往[寒武纪开发者社区](https://developer.cambricon.com)注册账号, 按需下载。
+其他开发资料, 可前往[寒武纪开发者社区](https://developer.cambricon.com)注册账号按需下载。也可在官方提供的专属FTP账户指定路径下载。
 
 **预装软件**
 
@@ -85,7 +91,7 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 - PATH=$BIN_DIR_GCC_Linaro:$BIN_DIR_GCC_ARM:$PATH
 - NEUWARE_HOME=/opt/work/neuware/pc
 
-# 2. Directory tree
+# 2. 目录结构
 
 ```bash
 .
@@ -104,12 +110,12 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 └── tools                                   （交叉编译中常用的小工具和脚本）
 ```
 
-# 3. Clone
+# 3. 下载源码
 ```bash
 git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.git
 ```
 
-# 4. Build
+# 4. 编译镜像
 ```bash
 #编译完成后，会在本地生成一个docker镜像。
 #编译Docker镜像：安装 gcc-linaro + cntoolkit-edge
@@ -128,19 +134,19 @@ git clone https://github.com/CambriconKnight/mlu220-cross-compile-docker-image.g
 -rw-rw-r-- 1 root root 3785447424 7月  27 18:35 ./docker/image-ubuntu16.04-mlu220-cross-compile-$VERSION.tar.gz
 ```
 
-# 5. Load
+# 5. 加载镜像
 ```bash
 #加载Docker镜像
 ./load-image-mlu220-cross-compile.sh
 ```
 
-# 6. Run
+# 6. 启动容器
 ```bash
 #启动Docker容器
 ./run-container-mlu220-cross-compile.sh
 ```
 
-# 7. Test
+# 7. 环境验证
 ```bash
 #执⾏以下命令，确认aarch64-linux-gnu-gcc版本信息：
 aarch64-linux-gnu-gcc -v
