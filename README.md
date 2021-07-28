@@ -28,9 +28,10 @@
 
 **软件环境准备:**
 
-| 名称                   | 版本                                                  | 备注                                 |
+| 名称                   | 版本/文件                                              | 备注                                 |
 | :-------------------- | :-------------------------------                      | :---------------------------------- |
 | Linux OS              | Ubuntu16.04/Ubuntu18.04/CentOS7                       | 宿主机操作系统                         |
+| MLU220-SOM交叉编译工具集 | mlu220-cross-compile-docker-image                    | MLU220-SOM交叉编译工具集               |
 | Driver_MLU270         | neuware-mlu270-driver-dkms_4.9.2_all.deb              | MLU270驱动安装包(依操作系统选择)         |
 | CNToolkit_MLU270      | cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb               | Neuware SDK For MLU270(依操作系统选择) |
 | CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.3-1_arm64.tar.gz                   | Neuware SDK For MLU220               |
@@ -43,9 +44,11 @@
 
 Ubuntu16.04: http://mirrors.aliyun.com/ubuntu-releases/16.04
 
+MLU220-SOM交叉编译工具集: https://github.com/CambriconKnight/mlu220-cross-compile-docker-image
+
 Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 
-其他开发资料, 可前往[寒武纪开发者社区](https://developer.cambricon.com)注册账号,按需下载.
+其他开发资料, 可前往[寒武纪开发者社区](https://developer.cambricon.com)注册账号, 按需下载。
 
 **预装软件**
 

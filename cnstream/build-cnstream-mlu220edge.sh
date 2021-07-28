@@ -233,6 +233,7 @@ FullNameCMake="${PWD}/toolchain-edge.cmake"
 DirNameCNStream="cnstream"
 DirFullNameCNStream="$DirFullNameWork/$DirNameCNStream"
 AddrGitCNStream="https://github.com/Cambricon/cnstream.git"
+#AddrGitCNStream="https://gitee.com/SolutionSDK/CNStream.git"
 #AddrDownloadCNStream="https://github.com/Cambricon/cnstream.git"
 #Gflags
 PackageDirNameGflags="gflags-2.2.2"
