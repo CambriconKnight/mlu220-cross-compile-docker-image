@@ -167,7 +167,7 @@ build_cnstream_edge() {
     echo -e "${green}# Build cnstream for mlu220edge.....${none}"
     mkdir -p ${1}/${2}/build
     pushd ${1}/${2}/build
-    cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -DMLU=MLU220_SOC -Dbuild_display=OFF
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -DMLU=MLU220EDGE -Dbuild_tests=OFF -DCNIS_WITH_CURL=OFF -Dbuild_modules_contrib=OFF -Dbuild_display=OFF
     make -j4
     popd
     echo -e "${green}  Completed!${none}"
@@ -233,7 +233,7 @@ FullNameCMake="${PWD}/toolchain-edge.cmake"
 DirNameCNStream="cnstream"
 DirFullNameCNStream="$DirFullNameWork/$DirNameCNStream"
 AddrGitCNStream="https://github.com/Cambricon/cnstream.git"
-#AddrGitCNStream="https://gitee.com/SolutionSDK/CNStream.git"
+#AddrGitCNStream="https://gitee.com/SolutionSDK/cnstream.git"
 #AddrDownloadCNStream="https://github.com/Cambricon/cnstream.git"
 #Gflags
 PackageDirNameGflags="gflags-2.2.2"
