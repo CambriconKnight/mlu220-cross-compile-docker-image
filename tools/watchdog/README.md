@@ -18,11 +18,12 @@
 | Linux OS              | Ubuntu16.04/Ubuntu18.04/CentOS7                       | 宿主机操作系统                         |
 | MLU220-SOM交叉编译工具集 | mlu220-cross-compile-docker-image                    | MLU220-SOM交叉编译工具集               |
 | Driver_MLU220         | cambricon-mlu220edge-driver-4.9.7-arm64.tar.gz        | MLU220驱动源码包                      |
-| CNToolkit             | cntoolkit-edge_1.7.5-1_arm64.tar.gz                   | CNToolkit 源码包                      |
+| CNToolkit             | cntoolkit-edge_1.7.5-1_arm64.tar.gz                   | CNToolkit 包                      |
 
 **下载地址:**
 
 Driver: ftp://username@download.cambricon.com:8821/download/mlu220edge-driver-4.9.7-arm64/cambricon-mlu220edge-driver-4.9.7-arm64.tar.gz
+
 CNToolkit： ftp://username@download.cambricon.com:8821/product/GJD/MLU220/1.7.602/mlu220edge/cntoolkit-edge_1.7.5-1_arm64.tar.gz
 
 *注: 以上链接中的 username 可替换官方提供的专属FTP账户及对应密码下载。*
@@ -85,6 +86,11 @@ wdt: wdt@8000001000 {
 
 0 directories, 7 files
 ```
+*注1: bsp.tar.gz, bsp_md5.txt 是由MLU220驱动源码包解压并编译后生成[release/neuware/opensrc/opensrc/mlu220_build/build/out/bsp.tar.gz]。*
+
+*注2: cambricon.tar.gz, cambricon_md5.txt 是由MLU220驱动源码包解压并编译后生成[release/neuware/opensrc/opensrc/mlu220_build/build/out/cambricon.tar.gz]。*
+
+*注3: neuware.tar.gz, neuware_md5.txt 是由CNToolkit 包直接解压后得到[neuware/board/image/neuware.tar.gz]。*
 
 **升级命令**
 
