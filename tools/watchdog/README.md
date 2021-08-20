@@ -26,7 +26,7 @@ Driver: ftp://username@download.cambricon.com:8821/download/mlu220edge-driver-4.
 
 CNToolkit： ftp://username@download.cambricon.com:8821/product/GJD/MLU220/1.7.602/mlu220edge/cntoolkit-edge_1.7.5-1_arm64.tar.gz
 
-*注: 以上链接中的 username 可替换官方提供的专属FTP账户及对应密码下载。*
+*注: 以上链接中的 [username] 需要替换为官方提供的专属FTP账户并使用对应密码下载。*
 
 # 3. 修改源码
 
