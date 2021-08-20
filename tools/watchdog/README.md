@@ -9,7 +9,7 @@
 
 默认没有开启看门狗， 如要开启需要修改BSP源码包dts中的wdt status，重新编译升级MLU220-SOM。详细操作如下：
 
-# 2. 环境准备
+# 2. 准备环境
 
 **软件包:**
 
@@ -32,7 +32,7 @@ CNToolkit： ftp://username@download.cambricon.com:8821/product/GJD/MLU220/1.7.6
 
 解压MLU220驱动源码包 cambricon-mlu220edge-driver-4.9.7-arm64.tar.gz, 得到如下目录结构:
 
-修改BSP文件: release/neuware/opensrc/opensrc/linux/arch/arm64/boot/dts/cambricon/cambr-c20e-common.dtsi
+修改BSP源代码文件: release/neuware/opensrc/opensrc/linux/arch/arm64/boot/dts/cambricon/cambr-c20e-common.dtsi
 
 修改后:
 
@@ -64,9 +64,9 @@ wdt: wdt@8000001000 {
 };
 ```
 
-# 4. 编译BSP源码
+# 4. 编译源码
 
-参考：https://gitee.com/cambriconknight/mlu220-cross-compile-docker-image#81-完整编译
+编译BSP源码参考：https://gitee.com/cambriconknight/mlu220-cross-compile-docker-image#81-完整编译
 
 # 5. 升级板卡
 
