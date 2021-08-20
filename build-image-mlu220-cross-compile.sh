@@ -127,9 +127,9 @@ if [ $FLAG_with_neuware_installed -eq 1 ];then
         echo -e "${yellow}1.Please download ${NeuwarePackageName} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
         echo -e "${yellow}  For further information, please contact us.${none}"
         echo -e "${yellow}2.Copy the dependent packages(${NeuwarePackageName}) into the directory!${none}"
-        echo -e "${yellow}  eg: cp -v /data/ftp/product/MLU270/$VERSION/Ubuntu16.04/CNToolkit/${NeuwarePackageName} ./${PATH_WORK}${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/GJD/MLU270/$VER/Ubuntu16.04/CNToolkit/${NeuwarePackageName} ./${PATH_WORK}${none}"
         #Manual copy
-        #cp -v /data/ftp/product/MLU270/v1.7.0/Ubuntu16.04/CNToolkit/cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb ./mlu220-cross-compile
+        #cp -v /data/ftp/product/GJD/MLU270/1.7.0/Ubuntu16.04/CNToolkit/cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb ./mlu220-cross-compile
         exit -1
     fi
     FLAG_with_neuware_installed2dockerfile="yes"

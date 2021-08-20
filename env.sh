@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------
 # Filename:    env.sh
-# Revision:    1.0.0
+# Revision:    1.1.0
 # Date:        2021/07/26
 # Description: Common Environment variable
 # Example:
@@ -10,11 +10,12 @@
 #################### version ####################
 ## 以下信息,根据各个版本中文件实际名词填写.
 #Version
-VER="1.7.0"
+VER="1.7.602"
+#VER="1.7.0"
 #Neuware SDK For MLU270(依操作系统选择)
-NeuwarePackageName="cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb"
+NeuwarePackageName="cntoolkit_1.7.5-1.ubuntu16.04_amd64.deb"
 # Neuware SDK For MLU220
-FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.7.3-1_arm64.tar.gz"
+FILENAME_MLU220_CNToolkit="cntoolkit-edge_1.7.5-1_arm64.tar.gz"
 #ARM64 交叉编译器
 FILENAME_MLU220_GCC_LINARO="gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz"
 #M0 交叉编译器

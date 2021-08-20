@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://gitee.com/cambriconknight/mlu220-cross-compile-docker-image/tree/master/tools/watchdog">
-        <img alt="mlu220-som" src="./res/mlu220-som.jpg" height="140" />
+        <img alt="mlu220-som" src="../../res/mlu220-som.jpg" height="140" />
         <h1 align="center">MLU220-SOM看门狗功能如何开启?</h1>
     </a>
 </p>
