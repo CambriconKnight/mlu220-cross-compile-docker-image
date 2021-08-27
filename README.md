@@ -230,7 +230,7 @@ MLU220交叉编译Docker镜像编译生成后，接下来可基于此镜像进�
 以下是基于CNStream进行交叉编译，详细交叉编译过程参考[CNStream-MLU220Edge交叉编译脚本](./cnstream/build-cnstream-mlu220edge.sh)。
 ```bash
 #进入cnstream目录:在容器中映射目录下，进行编译，方便文件共享。
-cd /home/cam/cnstream
+cd /home/share/cnstream
 #启动一键编译CNStream-MLU220Edge脚本
 #编译完成后，会在本目录下生成一个部署包，文件默认名称是cnstream_mlu220edge.tar.gz
 ./build-cnstream-mlu220edge.sh
