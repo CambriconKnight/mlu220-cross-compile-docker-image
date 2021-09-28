@@ -60,7 +60,7 @@ RUN echo deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted 
             libgoogle-glog-dev \
             openssh-server \
             libsdl2-dev  \
-            lcov  \
+            lcov dos2unix file \
             ca-certificates \
             device-tree-compiler libssl-dev bc tree \
             minicom tftpd-hpa nfs-kernel-server nfs-common \
