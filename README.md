@@ -103,6 +103,7 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 ├── cnstream                                （cnstream的交叉编译开发目录，已完）
 ├── docker                                  （存储dockerfile相关文件）
 ├── easydk                                  （easydk的交叉编译开发目录，未完......待自测验证后提交）
+├── ffmpeg-mlu                              （ffmpeg-mlu的交叉编译开发目录）
 ├── 3rdparty                                （3rdparty的交叉编译开发目录，未完......待自测验证后提交）
 ├── load-image-mlu220-cross-compile.sh      （加载docker镜像）
 ├── README.md                               （readme）
