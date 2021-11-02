@@ -13,7 +13,7 @@ MLU220交叉编译Docker镜像编译生成后，接下来可基于此镜像进�
 | Gflags                | [gflags-2.2.2](https://github.com/gflags/gflags/archive/v2.2.2.tar.gz)    |  |
 | Glogs                 | [glog-0.4.0](https://github.com/google/glog/archive/v0.4.0.tar.gz)        |  |
 | FFMpeg                | [ffmpeg-4.1.6"](http://ffmpeg.org/releases/ffmpeg-4.1.6.tar.gz)           |  |
-| OpenCV                | [opencv-3.4.6](https://github.com/opencv/opencv/archive/3.4.6.tar.gz)     |  |
+| OpenCV                | [opencv-3.4.15](https://github.com/opencv/opencv/archive/3.4.6.tar.gz)     |  |
 | GCC_LINARO_MLU220EDGE | gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz                     | ARM64 交叉编译器, 可前往[寒武纪开发者社区](https://developer.cambricon.com) 下载, 或在官方提供的FTP账户指定路径下载 |
 | CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.3-1_arm64.tar.gz                                       | Neuware SDK For MLU220, 可前往[寒武纪开发者社区](https://developer.cambricon.com) 下载, 或在官方提供的FTP账户指定路径下载 |
 
@@ -91,8 +91,8 @@ cd ./cnstream_mlu220edge
 #设置环境变量(第一次登陆板卡需要设置环境变量)
 . env.sh
 #测试YOLOv3-MLU220Edge
-cd /cambricon/nfs/cnstream_mlu220edge/samples/demo/detection/mlu220
-./run_yolov3_mlu220.sh
+cd /cambricon/nfs/cnstream_mlu220edge/samples/cns_launcher/object_detection
+./run.sh mlu220 rtsp
 ```
 - 常见问题-1：
 
@@ -117,6 +117,6 @@ ls -la /data/nfs/cnstream_mlu220edge/data/models/MLU220/Primary_Detector/YOLOv3
 ssh root@192.168.1.110
 cd /cambricon/nfs/cnstream_mlu220edge
 . ./env.sh
-cd /cambricon/nfs/cnstream_mlu220edge/samples/demo/detection/mlu220
-./run_yolov3_mlu220.sh
+cd /cambricon/nfs/cnstream_mlu220edge/samples/cns_launcher/object_detection
+./run.sh mlu220 rtsp
 ```

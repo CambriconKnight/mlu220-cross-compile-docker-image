@@ -136,6 +136,23 @@ build_ffmpeg_edge() {
     echo -e "${green}  Completed!${none}"
 }
 
+# Build Kafka for mlu220edge
+# Usage: build_Kafka_edge $DirFullNameWork $PackageDirNameKafka $FullNameCMake
+# Example: build_Kafka_edge "/opt/cambricon/cnstream_mlu220edge" "librdkafka-1.7.0" "/opt/cambricon/toolchain-edge.cmake"
+build_kafka_edge() {
+    echo -e "${green}# Build kafka for mlu220edge.....${none}"
+    mkdir -p ${1}/${2}/build
+    pushd ${1}/${2}/build
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} \
+            -DCMAKE_INSTALL_PREFIX=${1}/cnstream  \
+            -DBUILD_SHARED_LIBS=on
+
+    make clean
+    make -j4 install
+    popd
+    echo -e "${green}  Completed!${none}"
+}
+
 # Build opencv for mlu220edge
 # Usage: build_opencv_edge $DirFullNameWork $PackageDirNameOpenCV $FullNameCMake
 # Example: build_opencv_edge "/opt/cambricon/cnstream_mlu220edge" "opencv-3.4.6" "/opt/cambricon/toolchain-edge.cmake"
@@ -167,7 +184,10 @@ build_cnstream_edge() {
     echo -e "${green}# Build cnstream for mlu220edge.....${none}"
     mkdir -p ${1}/${2}/build
     pushd ${1}/${2}/build
-    cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -DMLU=MLU220EDGE -Dbuild_tests=OFF -DCNIS_WITH_CURL=OFF -Dbuild_modules_contrib=OFF -Dbuild_display=OFF
+    #cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -DMLU=MLU220EDGE -Dbuild_tests=OFF -DCNIS_WITH_CURL=OFF -Dbuild_modules_contrib=OFF -Dbuild_display=OFF
+    #cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -Dbuild_tests=OFF -DCNIS_WITH_CURL=OFF -Dbuild_modules_contrib=OFF -Dbuild_display=OFF
+    cmake .. -DCMAKE_TOOLCHAIN_FILE=${3} -DCNIS_WITH_CURL=OFF -Dbuild_display=OFF
+    #cmake .. -DCMAKE_TOOLCHAIN_FILE=$edge_dir/toolchain-edge.cmake -DCNIS_WITH_CURL=OFF -Dbuild_display=OFF
     make -j4
     popd
     echo -e "${green}  Completed!${none}"
@@ -184,32 +204,18 @@ package_cnstream_mlu220edge() {
     cp -rvf $NEUWARE_HOME/lib64/* ${2}/lib/
     #2.拷贝 cnstream4edge 动态库和第三方库到打包目录
     cp -rvf ${1}/lib/* ${2}/lib/
+    cp -rvf ${1}/3rdparty/live555/lib/* ${2}/lib/
     #3.拷贝 easydk4edge 动态库和第三方库到打包目录
-    cp -rvf ${1}/build/easydk/lib* ${2}/lib/
-    cp -rvf ${1}/build/easydk/infer_server/lib* ${2}/lib/
+    cp -rvf ${1}/easydk/lib/*.so ${2}/lib/
+    cp -rvf ${1}/easydk/lib/*.so.* ${2}/lib/
     #4.拷贝可执行文件以及需要的脚本，模型和数据源等等到打包目录
     cp -rvf ${1}/data ${2}/
     cp -rvf ${1}/samples ${2}/
     #5.清理无用文件/目录,如：针对270的测试实例以及源码等文件
-    rm -rvf ${2}/samples/example
-    rm -rvf ${2}/samples/cmake
+    rm -rvf ${2}/samples/simple_run_pipeline
+    rm -rvf ${2}/samples/multi_pipelines
+    rm -rvf ${2}/samples/common
     rm -vf ${2}/samples/CMakeLists.txt
-    rm -vf ${2}/samples/demo/*.cpp
-    rm -vf ${2}/samples/demo/CMakeLists.txt
-    rm -vf ${2}/samples/demo/detection_config.json
-    rm -vf ${2}/samples/demo/run.sh
-    rm -rvf ${2}/samples/demo/classification/mlu270
-    rm -rvf ${2}/samples/demo/detection/mlu270
-    rm -rvf ${2}/samples/demo/multi_pipelines
-    rm -rvf ${2}/samples/demo/postprocess
-    rm -rvf ${2}/samples/demo/secondary
-    rm -rvf ${2}/samples/demo/multi_process
-    rm -rvf ${2}/samples/demo/preprocess
-    rm -rvf ${2}/samples/demo/track/mlu270
-    rm -rvf ${2}/samples/demo/encode
-    rm -rvf ${2}/samples/demo/multi_sources
-    rm -rvf ${2}/samples/demo/rtsp
-    rm -rvf ${2}/samples/demo/obj_filter
     #6.生成环境变量配置文件
     TimePackage=$(date +%Y%m%d%H%M%S) # eg:20210131230402.403666251
     echo '#!/bin/bash' > ${2}/env.sh
@@ -238,23 +244,30 @@ AddrGitCNStream="https://github.com/Cambricon/cnstream.git"
 #Gflags
 PackageDirNameGflags="gflags-2.2.2"
 PackageNameGflags="$PackageDirNameGflags.tar.gz"
-#AddrDownloadGflags="https://github.com/gflags/gflags/archive/v2.2.2.tar.gz"
-AddrDownloadGflags="http://video.cambricon.com/models/edge/${PackageNameGflags}"
+AddrDownloadGflags="https://github.com/gflags/gflags/archive/v2.2.2.tar.gz"
+#AddrDownloadGflags="http://video.cambricon.com/models/edge/${PackageNameGflags}"
 #Glogs
 PackageDirNameGlogs="glog-0.4.0"
 PackageNameGlogs="$PackageDirNameGlogs.tar.gz"
-#AddrDownloadGlogs="https://github.com/google/glog/archive/v0.4.0.tar.gz"
-AddrDownloadGlogs="http://video.cambricon.com/models/edge/${PackageNameGlogs}"
+AddrDownloadGlogs="https://github.com/google/glog/archive/v0.4.0.tar.gz"
+#AddrDownloadGlogs="http://video.cambricon.com/models/edge/${PackageNameGlogs}"
 #FFMpeg
 PackageDirNameFFMpeg="ffmpeg-4.1.6"
 PackageNameFFMpeg="$PackageDirNameFFMpeg.tar.gz"
 #AddrDownloadFFMpeg="http://ffmpeg.org/releases/ffmpeg-4.1.6.tar.gz"
 AddrDownloadFFMpeg="http://video.cambricon.com/models/edge/${PackageNameFFMpeg}"
 #OpenCV
-PackageDirNameOpenCV="opencv-3.4.6"
+#PackageDirNameOpenCV="opencv-3.4.6"
+PackageDirNameOpenCV="opencv-3.4.15"
 PackageNameOpenCV="$PackageDirNameOpenCV.tar.gz"
 #AddrDownloadOpenCV="https://github.com/opencv/opencv/archive/3.4.6.tar.gz"
+#AddrDownloadOpenCV="https://github.com/opencv/opencv/archive/3.4.15.tar.gz"
 AddrDownloadOpenCV="http://video.cambricon.com/models/edge/${PackageNameOpenCV}"
+#Kafka
+PackageDirNameKafka="librdkafka-1.7.0"
+PackageNameKafka="$PackageDirNameKafka.tar.gz"
+#AddrDownloadKafka="https://github.com/edenhill/librdkafka/archive/refs/tags/v1.7.0.tar.gz"
+AddrDownloadKafka="http://video.cambricon.com/models/edge/${PackageNameKafka}"
 
 #Font color
 none="\033[0m"
@@ -308,6 +321,8 @@ wget_file_form_http ${PackageNameGflags} ${AddrDownloadGflags}
 wget_file_form_http ${PackageNameGlogs} ${AddrDownloadGlogs}
 # Download FFMpeg: wget -O ${PackageNameFFMpeg} -c ${AddrDownloadFFMpeg}
 wget_file_form_http ${PackageNameFFMpeg} ${AddrDownloadFFMpeg}
+# Download Kafka: wget -O ${PackageNameKafka} -c ${AddrDownloadKafka}
+wget_file_form_http ${PackageNameKafka} ${AddrDownloadKafka}
 # Download OpenCV: wget -O ${PackageNameOpenCV} -c ${AddrDownloadOpenCV}
 wget_file_form_http ${PackageNameOpenCV} ${AddrDownloadOpenCV}
 # Download Gcc-linaro(gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
@@ -318,6 +333,7 @@ wget_file_form_http ${PackageNameOpenCV} ${AddrDownloadOpenCV}
 if [ ! -d "${PackageDirNameGflags}" ];then tar -zxvf ${PackageNameGflags};fi
 if [ ! -d "${PackageDirNameGlogs}" ];then tar -zxvf ${PackageNameGlogs};fi
 if [ ! -d "${PackageDirNameFFMpeg}" ];then tar -zxvf ${PackageNameFFMpeg};fi
+if [ ! -d "${PackageDirNameKafka}" ];then tar -zxvf ${PackageNameKafka};fi
 if [ ! -d "${PackageDirNameOpenCV}" ];then tar -zxvf ${PackageNameOpenCV};fi
 
 ####################
@@ -326,6 +342,7 @@ if [ ! -d "${PackageDirNameOpenCV}" ];then tar -zxvf ${PackageNameOpenCV};fi
 build_gflags_edge $DirFullNameWork $PackageDirNameGflags $FullNameCMake
 build_glog_edge $DirFullNameWork $PackageDirNameGlogs $FullNameCMake
 build_ffmpeg_edge $DirFullNameWork $PackageDirNameFFMpeg $FullNameCMake
+build_kafka_edge $DirFullNameWork $PackageDirNameKafka $FullNameCMake
 build_opencv_edge $DirFullNameWork $PackageDirNameOpenCV $FullNameCMake
 # 编译成功，可以在cnstream下看到 bin|include|lib|share 等文件夹
 ls -la $DirFullNameWork/$DirNameCNStream | grep -E "bin|include|lib|share"
