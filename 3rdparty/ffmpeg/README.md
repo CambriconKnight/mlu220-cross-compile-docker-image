@@ -80,7 +80,7 @@ ssh root@192.168.1.110
 #进入 MLU220Edge 板卡上的NFS目录。
 cd /cambricon/nfs
 ls -la ffmpeg_mlu220edge.tar.gz
-#MLU220Edge板卡上解压cnstream_mlu220edge.tar.gz(上位机器上解压更快)
+#MLU220Edge板卡上解压 ffmpeg_mlu220edge.tar.gz(上位机器上解压更快)
 tar zxvf ffmpeg_mlu220edge.tar.gz
 #进入应用实例子目录
 cd ./ffmpeg_mlu220edge
