@@ -295,8 +295,8 @@ cd ./cnstream_mlu220edge
 #设置环境变量(第一次登陆板卡需要设置环境变量)
 . env.sh
 #测试YOLOv3-MLU220Edge
-cd /cambricon/nfs/cnstream_mlu220edge/samples/demo/detection/mlu220
-./run_yolov3_mlu220.sh
+cd /cambricon/nfs/cnstream_mlu220edge/samples/cns_launcher/object_detection
+./run.sh mlu220 rtsp
 ```
 - 常见问题-1：
 
@@ -312,17 +312,17 @@ wget: bad address 'video.cambricon.com'
 #进入任意目录
 cd /data/tmp
 #在上位机或其他主机上，手动下载已经转好的模型及标签文件
-wget -O yolov3_4c4b_argb_220_v1.5.0.cambricon http://video.cambricon.com/models/MLU220/Primary_Detector/YOLOv3/yolov3_4c4b_argb_220_v1.5.0.cambricon
-wget -c http://video.cambricon.com/models/MLU270/yolov3/label_map_coco.txt
+wget -O yolov3_b4c4_argb_mlu220.cambricon http://video.cambricon.com/models/MLU220/yolov3_b4c4_argb_mlu220.cambricon
+wget -c http://video.cambricon.com/models/labels/label_map_coco.txt
 #下载完成后拷贝到指定目录(以NFS目录为例，目录可能已经变成root权限了，可以使用sudo进行拷贝)
-sudo cp -vf yolov3_4c4b_argb_220_v1.5.0.cambricon label_map_coco.txt /data/nfs/cnstream_mlu220edge/data/models/MLU220/Primary_Detector/YOLOv3
-ls -la /data/nfs/cnstream_mlu220edge/data/models/MLU220/Primary_Detector/YOLOv3
+sudo cp -vf yolov3_b4c4_argb_mlu220.cambricon label_map_coco.txt /data/nfs/test/cnstream_mlu220edge/data/models
+ls -la /data/nfs/test/cnstream_mlu220edge/data/models
 #登陆MLU220Edge，再次启动测试YOLOv3-MLU220Edge
 ssh root@192.168.1.110
 cd /cambricon/nfs/cnstream_mlu220edge
 . ./env.sh
-cd /cambricon/nfs/cnstream_mlu220edge/samples/demo/detection/mlu220
-./run_yolov3_mlu220.sh
+cd /cambricon/nfs/cnstream_mlu220edge/samples/cns_launcher/object_detection
+./run.sh mlu220 rtsp
 ```
 
 - 常见问题-2：
