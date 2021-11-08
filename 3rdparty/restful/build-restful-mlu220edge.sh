@@ -2,7 +2,7 @@
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     build-restful-mlu220edge.sh
-# UpdateDate:   2021/11/31
+# UpdateDate:   2021/11/8
 # Description:  Build packages for restful-mlu220edge.
 #               The scripts automate these processes:
 #               1.Download restfulserved
@@ -99,13 +99,13 @@ else
 fi
 
 ####################
-# 4.Build restfulserved for mlu220edge
+# 2.Build restfulserved for mlu220edge
 build_restful_edge $DirFullNameWork $DirNameRESTFUL $FullNameCMake
 # 编译成功，可以在restful下看到 bin|include|lib|share 等文件夹
 ls -la $DirFullNameRESTFUL/build/install | grep -E "bin|include|lib"
 
 ####################
-# 5.Package restful for mlu220edge
+# 3.Package restful for mlu220edge
 # 打包restful_mlu220edge相关部署文件
 package_restful_mlu220edge $DirFullNameRESTFUL $DirFullNameForInstall
 popd
