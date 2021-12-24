@@ -49,7 +49,7 @@ chmod +x redis
 
 执行命令：src/redis-cli
 
-注：redis-server可以通过redis文件夹下redis.conf 文件进行配置，保证redis-server顺利运行。具体的命令redis文件夹下运行：src/redis-server ./redis.conf。
+注：redis-server通过redis文件夹下redis.conf 文件进行配置，保证redis-server顺利运行。具体的命令redis文件夹下运行：src/redis-server ./redis.conf。
 ```
 
 # 3. 附录
