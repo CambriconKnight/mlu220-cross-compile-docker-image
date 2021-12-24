@@ -9,6 +9,10 @@ redis-4.0.9的下载地址是：https://github.com/redis/redis/tree/4.0.9
 
 ## 2.2 Redis交叉编译
 git clone https://github.com/redis/redis.git
+<<<<<<< HEAD
+
+=======
+>>>>>>> d69128a6c5e132cedb415688d5b43119100cd5a6
 下载好后，进入目录进行交叉编译。
 交叉编译环境搭建参考：https://github.com/CambriconKnight/mlu220-cross-compile-docker-image
 1. 交叉编译
@@ -47,6 +51,10 @@ chmod +x redis
 启动客户端
 
 执行命令：src/redis-cli
+<<<<<<< HEAD
+注：redis-server通过redis文件夹下redis.conf 文件进行配置，保证redis-server顺利运行。具体的命令redis文件夹下运行：src/redis-server ./redis.conf。
+=======
+>>>>>>> d69128a6c5e132cedb415688d5b43119100cd5a6
 ```
 
 # 3. 附录
