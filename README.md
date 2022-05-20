@@ -11,6 +11,10 @@
 
 此工具集开发宗旨是"一键编译与验证", 力求压缩环境搭建与功能验证的时间成本, 以便更快上手[MLU220-SOM](https://www.cambricon.com/index.php?m=content&c=index&a=lists&catid=56)。
 
+<p align="left">
+    <img alt="mlu220-som" src="./res/mlu220-cross-compile-docker-image-1.png" height="360" />
+</p>
+
 **功能说明**
 
 此工具包集成了如下功能:
@@ -220,6 +224,10 @@ MLU220交叉编译Docker镜像编译生成后，接下来可基于此镜像进�
 启动容器 >> 一键交叉编译 CNStream-MLU220Edge >> 生成 CNStream-MLU220Edge 部署包 >> 部署到 MLU220SOM 开发板卡 >> 验证 CNStream-MLU220Edge实例
 
 以下基于寒武纪实时数据流分析开源框架[CNStream](https://github.com/Cambricon/CNStream)进行交叉编译与验证.
+
+<p align="left">
+    <img alt="mlu220-som" src="./res/mlu220-cross-compile-docker-image-2.png" height="360" />
+</p>
 
 ## 9.1. 启动容器
 ```bash
