@@ -1,7 +1,7 @@
 <p align="center">
     <a href="https://gitee.com/cambriconknight/mlu220-cross-compile-docker-image/tree/master/tools/minicom">
         <img alt="minicom" src="../../res/minicom.png" height="140" />
-        <h1 align="center">Minicom串口通信工具</h1>
+        <h1 align="center">基于MLU220-SOM精简版Linux系统部署Minicom</h1>
     </a>
 </p>
 
@@ -9,7 +9,9 @@
 Minicom 是一个串口通信工具，就像 Windows 下的超级终端。可用来与串口设备通信，如调试交换机和 Modem 等。而寒武纪 MLU220-SOM 模组出厂自带的精简版嵌入式Linux系统并没有 Minicom 工具，为此本文主要介绍基于 Minicom 及依赖库的源码下载，交叉编译，部署，配置以及测试。
 
 # 2. 源码下载
+
 Minicom 源码包下载地址: https://salsa.debian.org/minicom-team/minicom/-/archive/2.8/minicom-2.8.tar
+
 Ncurses 源码包下载地址: https://ftp.gnu.org/gnu/ncurses/ncurses-5.7.tar.gz
 
 >![](../../res/note.gif) **备注信息：**
@@ -63,6 +65,6 @@ export TERMINFO=/usr/share/terminfo
 export TERM=vt100
 ```
 
-# 5. 测试
+# 5. 配置与测试
 
-参见互联网 minicom 使用手册.
+minicom 配置与测试参见互联网 minicom 使用手册.
