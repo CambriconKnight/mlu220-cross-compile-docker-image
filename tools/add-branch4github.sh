@@ -14,3 +14,7 @@ git push origin $NameBranch
 git branch -a
 git checkout master
 git branch -a
+#删除本地分支,eg: git branch -d v1.7.610
+#git branch -d $NameBranch
+#删除远程分支,eg: git push origin --delete v1.7.610
+#git push origin --delete $NameBranch
