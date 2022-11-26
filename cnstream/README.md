@@ -15,7 +15,10 @@ MLU220交叉编译Docker镜像编译生成后，接下来可基于此镜像进�
 | FFMpeg                | [ffmpeg-4.1.6"](http://ffmpeg.org/releases/ffmpeg-4.1.6.tar.gz)           |  |
 | OpenCV                | [opencv-3.4.15](https://github.com/opencv/opencv/archive/3.4.6.tar.gz)     |  |
 | GCC_LINARO_MLU220EDGE | gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz                     | ARM64 交叉编译器, 可前往[寒武纪开发者社区](https://developer.cambricon.com) 下载, 或在官方提供的FTP账户指定路径下载 |
-| CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.3-1_arm64.tar.gz                                       | Neuware SDK For MLU220, 可前往[寒武纪开发者社区](https://developer.cambricon.com) 下载, 或在官方提供的FTP账户指定路径下载 |
+| CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.14-1_arm64.tar.gz                  | Neuware SDK For MLU220               |
+| CNCV_MLU220EDGE       | cncv-edge_0.4.606-1_arm64.tar.gz                      | Neuware SDK For MLU220               |
+
+*以上软件包涉及FTP手动下载的,可下载到本地[dependent_files](../dependent_files)目录下,方便对应以下步骤中的提示操作。*
 
 ## 1.1. 启动容器
 ```bash

@@ -1,17 +1,19 @@
 # -------------------------------------------------------------------------------
 # Filename:     Dockerfile.16.04
-# UpdateDate:   2021/01/25
+# UpdateDate:   2022/11/26
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:
 # Depends:
 #               neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb(ftp://download.cambricon.com:8821/**/neuware-mlu270-$VERSION-1_Ubuntu16.04_amd64.deb)
 #               gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz(ftp://download.cambricon.com:8821/**/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz)
 #               gcc-arm-none-eabi-8-2018-q4-major.tar.gz(ftp://download.cambricon.com:8821/**/gcc-arm-none-eabi-8-2018-q4-major.tar.gz)
-#               cntoolkit-edge_1.4.110-1_arm64.tar.gz(ftp://download.cambricon.com:8821/**/cntoolkit-edge_1.4.110-1_arm64.tar.gz)
+#               cntoolkit-edge_1.7.14-1_arm64.tar.gz(ftp://download.cambricon.com:8821/**/cntoolkit-edge_1.7.14-1_arm64.tar.gz)
+#               cncv-edge_0.4.606-1_arm64.tar.gz(ftp://download.cambricon.com:8821/**/cncv-edge_0.4.606-1_arm64.tar.gz)
 # Notes:
 #               1.gcc-linaro&cntoolkit-edge has been deployed to the container.
 #                 gcc-linaro(/opt/work/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu)
 #                 cntoolkit-edge-1.4.110(/opt/work/neuware/pc/lib64)
+#                 cncv-edge_0.4.606(/opt/work/neuware/pc/lib64)
 #               2.These environment variables has been set in the container
 #                 BIN_DIR_WORK=/opt/work
 #                 BIN_DIR_GCC_Linaro=/opt/work/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
@@ -31,8 +33,11 @@ ARG neuware_package=neuware-mlu270-1.5.0-1_Ubuntu16.04_amd64.deb
 ARG mlu_platform=MLU270
 ARG with_neuware_installed=no
 
-ARG mlu220_cntoolkit_edge=cntoolkit-edge_1.4.110-1_arm64.tar.gz
+ARG mlu220_cntoolkit_edge=cntoolkit-edge_1.7.14-1_arm64.tar.gz
 ARG with_cntoolkit_edge_installed=yes
+
+ARG mlu220_cncv_edge=cncv-edge_0.4.606-1_arm64.tar.gz
+ARG with_cncv_edge_installed=yes
 
 ARG mlu220_gcc_linaro=gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz
 ARG with_gcc_linaro_installed=yes
@@ -93,6 +98,7 @@ RUN echo '# /etc/default/tftpd-hpa' > /etc/default/tftpd-hpa && \
     echo 'export PATH="$BIN_DIR_GCC_ARM:$PATH"' >> /opt/work/env.sh && \
     rm -rf /opt/work/$mlu220_gcc_arm; fi && \
     if [ "$with_cntoolkit_edge_installed" = "yes" ]; then tar zxf /opt/work/$mlu220_cntoolkit_edge -C /opt/work && \
+    tar zxf /opt/work/$mlu220_cncv_edge -C /opt/work && \
     echo 'export NEUWARE_HOME=/opt/work/neuware/pc' >> /opt/work/env.sh && \
     rm -rf /opt/work/$mlu220_cntoolkit_edge; fi
 

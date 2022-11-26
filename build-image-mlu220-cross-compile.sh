@@ -2,7 +2,7 @@
 set -e
 # -------------------------------------------------------------------------------
 # Filename:     build-image-mlu220-cross-compile.sh
-# UpdateDate:   2021/07/26
+# UpdateDate:   2022/11/26
 # Description:  Build docker images for mlu220-cross-compile.
 # Example:
 #               #Build docker images: install gcc-linaro + cntoolkit-edge
@@ -74,10 +74,13 @@ FLAG_with_neuware_installed=0
 FLAG_with_gcc_linaro_installed=1
 FLAG_with_gcc_arm_installed=0
 FLAG_with_cntoolkit_edge_installed=1
+FLAG_with_cncv_edge_installed=1
+
 FLAG_with_neuware_installed2dockerfile="no"
 FLAG_with_gcc_linaro_installed2dockerfile="yes"
 FLAG_with_gcc_arm_installed2dockerfile="no"
 FLAG_with_cntoolkit_edge_installed2dockerfile="yes"
+FLAG_with_cncv_edge_installed2dockerfile="yes"
 
 
 if [[ $# -eq 0 ]];then
@@ -156,6 +159,26 @@ else
     FLAG_with_cntoolkit_edge_installed2dockerfile="no"
 fi
 
+### FILENAME_MLU220_CNCV
+#if [ $FLAG_with_cncv_edge_installed -eq 1 ];then
+if [ $FLAG_with_cntoolkit_edge_installed -eq 1 ];then
+    if [ -f "${FILENAME_MLU220_CNCV}" ];then
+        echo "File(${FILENAME_MLU220_CNCV}): Exists!"
+    else
+        echo -e "${red}File(${FILENAME_MLU220_CNCV}): Not exist!${none}"
+        echo -e "${yellow}1.Please download ${FILENAME_MLU220_CNCV} from FTP(ftp://download.cambricon.com:8821/***)!${none}"
+        echo -e "${yellow}  For further information, please contact us.${none}"
+        echo -e "${yellow}2.Copy the dependent packages(${FILENAME_MLU220_CNCV}) into the directory!${none}"
+        echo -e "${yellow}  eg: cp -v /data/ftp/product/GJD/MLU220/$VER/mlu220edge/${FILENAME_MLU220_CNCV} ./${PATH_WORK}${none}"
+        #Manual copy
+        #cp -v /data/ftp/product/GJD/MLU220/1.7.602/mlu220edge/cncv-edge_0.4.606-1_arm64.tar.gz ./mlu220-cross-compile
+        exit -1
+    fi
+    FLAG_with_cncv_edge_installed2dockerfile="yes"
+else
+    FLAG_with_cncv_edge_installed2dockerfile="no"
+fi
+
 ### FILENAME_MLU220_GCC_ARM
 if [ $FLAG_with_gcc_arm_installed -eq 1 ];then
     if [ -f "${FILENAME_MLU220_GCC_ARM}" ];then
@@ -201,12 +224,14 @@ sudo docker build -f ../${DIR_DOCKER}/$FILENAME_DOCKERFILE \
     --build-arg neuware_package=${NeuwarePackageName} \
     --build-arg mlu_platform=${MLU_Platform} \
     --build-arg mlu220_cntoolkit_edge=${FILENAME_MLU220_CNToolkit} \
+    --build-arg mlu220_cncv_edge=${FILENAME_MLU220_CNCV} \
     --build-arg mlu220_gcc_linaro=${FILENAME_MLU220_GCC_LINARO} \
     --build-arg mlu220_gcc_arm=${FILENAME_MLU220_GCC_ARM} \
     --build-arg with_neuware_installed=${FLAG_with_neuware_installed2dockerfile} \
     --build-arg with_gcc_linaro_installed=${FLAG_with_gcc_linaro_installed2dockerfile} \
     --build-arg with_gcc_arm_installed=${FLAG_with_gcc_arm_installed2dockerfile} \
     --build-arg with_cntoolkit_edge_installed=${FLAG_with_cntoolkit_edge_installed2dockerfile} \
+    --build-arg with_cncv_edge_installed=${FLAG_with_cncv_edge_installed2dockerfile} \
     -t $NAME_IMAGE .
 
 #2.save image

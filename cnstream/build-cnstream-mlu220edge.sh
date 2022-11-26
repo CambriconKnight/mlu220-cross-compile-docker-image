@@ -244,30 +244,30 @@ AddrGitCNStream="https://github.com/Cambricon/cnstream.git"
 #Gflags
 PackageDirNameGflags="gflags-2.2.2"
 PackageNameGflags="$PackageDirNameGflags.tar.gz"
-AddrDownloadGflags="https://github.com/gflags/gflags/archive/v2.2.2.tar.gz"
-#AddrDownloadGflags="http://video.cambricon.com/models/edge/${PackageNameGflags}"
+#AddrDownloadGflags="https://github.com/gflags/gflags/archive/v2.2.2.tar.gz"
+AddrDownloadGflags="http://video.cambricon.com/models/edge_dependent/${PackageNameGflags}"
 #Glogs
 PackageDirNameGlogs="glog-0.4.0"
 PackageNameGlogs="$PackageDirNameGlogs.tar.gz"
-AddrDownloadGlogs="https://github.com/google/glog/archive/v0.4.0.tar.gz"
-#AddrDownloadGlogs="http://video.cambricon.com/models/edge/${PackageNameGlogs}"
+#AddrDownloadGlogs="https://github.com/google/glog/archive/v0.4.0.tar.gz"
+AddrDownloadGlogs="http://video.cambricon.com/models/edge_dependent/${PackageNameGlogs}"
 #FFMpeg
 PackageDirNameFFMpeg="ffmpeg-4.1.6"
 PackageNameFFMpeg="$PackageDirNameFFMpeg.tar.gz"
 #AddrDownloadFFMpeg="http://ffmpeg.org/releases/ffmpeg-4.1.6.tar.gz"
-AddrDownloadFFMpeg="http://video.cambricon.com/models/edge/${PackageNameFFMpeg}"
+AddrDownloadFFMpeg="http://video.cambricon.com/models/edge_dependent/${PackageNameFFMpeg}"
 #OpenCV
 #PackageDirNameOpenCV="opencv-3.4.6"
 PackageDirNameOpenCV="opencv-3.4.15"
 PackageNameOpenCV="$PackageDirNameOpenCV.tar.gz"
 #AddrDownloadOpenCV="https://github.com/opencv/opencv/archive/3.4.6.tar.gz"
 #AddrDownloadOpenCV="https://github.com/opencv/opencv/archive/3.4.15.tar.gz"
-AddrDownloadOpenCV="http://video.cambricon.com/models/edge/${PackageNameOpenCV}"
+AddrDownloadOpenCV="http://video.cambricon.com/models/edge_dependent/${PackageNameOpenCV}"
 #Kafka
 PackageDirNameKafka="librdkafka-1.7.0"
 PackageNameKafka="$PackageDirNameKafka.tar.gz"
 #AddrDownloadKafka="https://github.com/edenhill/librdkafka/archive/refs/tags/v1.7.0.tar.gz"
-AddrDownloadKafka="http://video.cambricon.com/models/edge/${PackageNameKafka}"
+AddrDownloadKafka="http://video.cambricon.com/models/edge_dependent/${PackageNameKafka}"
 
 #Font color
 none="\033[0m"
@@ -330,11 +330,11 @@ wget_file_form_http ${PackageNameOpenCV} ${AddrDownloadOpenCV}
 
 ####################
 # 2.Extracting Depends
-if [ ! -d "${PackageDirNameGflags}" ];then tar -zxvf ${PackageNameGflags};fi
-if [ ! -d "${PackageDirNameGlogs}" ];then tar -zxvf ${PackageNameGlogs};fi
-if [ ! -d "${PackageDirNameFFMpeg}" ];then tar -zxvf ${PackageNameFFMpeg};fi
-if [ ! -d "${PackageDirNameKafka}" ];then tar -zxvf ${PackageNameKafka};fi
-if [ ! -d "${PackageDirNameOpenCV}" ];then tar -zxvf ${PackageNameOpenCV};fi
+if [ ! -d "${PackageDirNameGflags}" ];then echo "Extracting Depends: ${PackageNameGflags}";tar -zxvf ${PackageNameGflags};fi
+if [ ! -d "${PackageDirNameGlogs}" ];then echo "Extracting Depends: ${PackageNameGlogs}";tar -zxvf ${PackageNameGlogs};fi
+if [ ! -d "${PackageDirNameFFMpeg}" ];then echo "Extracting Depends: ${PackageNameFFMpeg}";tar -zxvf ${PackageNameFFMpeg};fi
+if [ ! -d "${PackageDirNameKafka}" ];then echo "Extracting Depends: ${PackageNameKafka}";tar -zxvf ${PackageNameKafka};fi
+if [ ! -d "${PackageDirNameOpenCV}" ];then echo "Extracting Depends: ${PackageNameOpenCV}";tar -zxvf ${PackageNameOpenCV};fi
 
 ####################
 # 3.Build Depends for cnstream-mlu220edge

@@ -28,7 +28,7 @@
 - ~~EasyDK交叉编译与验证~~
 - ~~单独交叉编译第三方常用工具: GFlags、Glogs、OpenCV、FFMpeg、Live555、FreeType、Perf~~
 
-**硬件环境准备:**
+## 1.1. 硬件环境准备
 
 | 名称           | 数量      | 备注                  |
 | :------------ | :--------- | :------------------ |
@@ -37,19 +37,19 @@
 | 电源适配器      | 一套       | 12V 2A DC电源输出    |
 | USB转TTL串口线  | 一条       |                    |
 
-**软件环境准备:**
+## 1.2. 软件环境准备
 
 | 名称                   | 版本/文件                                              | 备注                                 |
 | :-------------------- | :-------------------------------                      | :---------------------------------- |
 | Linux OS              | Ubuntu16.04/Ubuntu18.04/CentOS7                       | 宿主机操作系统                         |
 | MLU220-SOM交叉编译工具集 | mlu220-cross-compile-docker-image                    | MLU220-SOM交叉编译工具集               |
-| Driver_MLU270         | neuware-mlu270-driver-dkms_4.9.2_all.deb              | MLU270驱动安装包(依操作系统选择)         |
-| CNToolkit_MLU270      | cntoolkit_1.7.3-2.ubuntu16.04_amd64.deb               | Neuware SDK For MLU270(依操作系统选择) |
-| CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.3-1_arm64.tar.gz                   | Neuware SDK For MLU220               |
+| CNToolkit_MLU220EDGE  | cntoolkit-edge_1.7.14-1_arm64.tar.gz                  | Neuware SDK For MLU220               |
+| CNCV_MLU220EDGE       | cncv-edge_0.4.606-1_arm64.tar.gz                      | Neuware SDK For MLU220               |
 | GCC_LINARO_MLU220EDGE | gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu.tgz | ARM64 交叉编译器                       |
 | GCC_ARMM0_MLU220EDGE  | gcc-arm-none-eabi-8-2018-q4-major.tar.gz              | M0 交叉编译器                          |
 
 注: 以上软件环境中文件名词, 如有版本升级及名称变化, 可以在 [env.sh](./env.sh) 中进行修改。
+*以上软件包涉及FTP手动下载的,可下载到本地[dependent_files](./dependent_files)目录下,方便对应以下步骤中的提示操作。*
 
 **下载地址:**
 
@@ -83,6 +83,7 @@ Neuware SDK: https://cair.cambricon.com/#/home/catalog?type=SDK%20Release
 - cndrv
 - cnrt
 - cncodec
+- cncv
 - gcc-linaro
 - gcc-arm-none-eabi
 - cntoolkit-edge
