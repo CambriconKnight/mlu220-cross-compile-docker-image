@@ -304,9 +304,18 @@ pushd "${DirNameWork}"
 ####################
 # 1.Download Depends
 # Download CNStream
+PATH_WORK_TMP="cnstream"
+#Github clone 指定分支及commit的代码,避免版本更新迭代造成不兼容.
+GITHUB_Branch="master"
+#GITHUB_Commit="877f5f55b3e21f73ac5eeac3985e4654ed1f73d7"
+GITHUB_Commit="7c5e8e0c09b8bf37d17d1216cd23b650c46fe20a"
 if [ ! -d "${DirNameCNStream}" ];then
-    git clone ${AddrGitCNStream}
-    pushd cnstream
+    echo "AddrGitCNStream=${AddrGitCNStream}"
+    echo "GITHUB_Branch=${GITHUB_Branch}"
+    echo "GITHUB_Commit=${GITHUB_Commit}"
+    git clone ${AddrGitCNStream} -b ${GITHUB_Branch}
+    cd ${DirNameCNStream} && git checkout ${GITHUB_Commit} && cd -
+    pushd ${DirNameCNStream}
     git submodule update --init
     # del .git
     find . -name ".git" | xargs rm -Rf
@@ -314,7 +323,7 @@ if [ ! -d "${DirNameCNStream}" ];then
 else
     echo "Directory(${DirNameCNStream}): Exists!"
 fi
-
+#exit 0
 # Download Gflags: wget -O ${PackageNameGflags} -c ${AddrDownloadGflags}
 wget_file_form_http ${PackageNameGflags} ${AddrDownloadGflags}
 # Download Glogs: wget -O ${PackageNameGlogs} -c ${AddrDownloadGlogs}
