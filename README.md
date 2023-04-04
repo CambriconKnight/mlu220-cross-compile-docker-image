@@ -307,6 +307,14 @@ cd ./cnstream_mlu220edge
 cd /cambricon/nfs/cnstream_mlu220edge/samples/cns_launcher/object_detection
 ./run.sh mlu220 rtsp
 ```
+参考以上运行测试实例，会按照配置文件启动业务处理流程，最后把检测后的结果通过 RTSP 服务模块推送出去。
+在局域网中任意PC可启动VLC客户端，拉取视频流如下所示：
+<table>
+    <tr>
+        <td ><center><img alt="aiknight_cars_6_20.gif" src="./res/aiknight_cars_6_20.gif" height="320" </center></td>
+    </tr>
+</table>
+
 - 常见问题-1：
 
 问题描述：如果遇到如下错误，则可能是MLU220Edge 板卡无法访问[模型存放网址](video.cambricon.com)，导致下载模型失败。
